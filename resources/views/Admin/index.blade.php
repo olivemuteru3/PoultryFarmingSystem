@@ -110,6 +110,56 @@
         <!-- Poultry Farming Information End -->
 
 
+        <!-- Recent Sales Start -->
+        <div class="container-fluid pt-4 px-4">
+            <div class="bg-secondary text-center rounded p-4">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h6 class="mb-0">Poultry Record</h6>
+                    <a href="#">Add New</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table text-start align-middle table-bordered table-hover mb-0">
+                        <thead>
+                        <tr class="text-white">
+                            <th scope="col">#</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Farmer</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>001</td>
+                            <td>01 Jan 2045</td>
+                            <td>Jenid</td>
+                            <td>{{ auth()->user()->name }}</td>
+                            <td>123</td>
+                            <td><span class="badge bg-success">Paid</span></td>
+                            <td><a class="btn btn-sm btn-primary" href="#">Detail</a></td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>01 Jan 2045</td>
+                            <td>Meyt</td>
+                            <td>{{ auth()->user()->name }}</td>
+                            <td>123</td>
+                            <td><span class="badge bg-success">Paid</span></td>
+                            <td><a class="btn btn-sm btn-primary" href="#">Detail</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Recent Sales End -->
+
+
+
+
+
 
 
 
