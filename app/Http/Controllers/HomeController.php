@@ -31,4 +31,24 @@ class HomeController extends Controller
             return view('auth.login');
         }
     }
+
+    public function RegisterPoultry()
+    {
+        if (Auth::id()) {
+            $usertype = Auth::user()->usertype;
+
+            if ($usertype === 'farmer') {
+                $bidder = auth()->user();
+
+                return view('Admin.RegisterPoultry');
+            } else if ($usertype === 'admin') {
+
+
+                return view('Admin.RegisterPoultry');
+            }
+        } else {
+            return view('auth.login');
+        }
+
+    }
 }

@@ -26,3 +26,5 @@ Route::middleware([
         return view('Admin.index');
     })->name('dashboard');
 });
+
+Route::get('/RegisterPoultry', [App\Http\Controllers\HomeController::class, 'RegisterPoultry'])->name('RegisterPoultry');
