@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('chickens', function (Blueprint $table) {
             $table->id();
+            $table->string('farmername');
+            $table->string('farmerPhone');
+            $table->string('number');
+            $table->string('date');
+            $table->string('comments');
+            $table->string('status')->default('entered');
             $table->timestamps();
         });
     }
