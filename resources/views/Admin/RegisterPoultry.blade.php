@@ -81,12 +81,12 @@
 
                                     <div class="mb-3">
                                         <label for="name" class="form-label">{{ __('Name') }}</label>
-                                        <input id="name" type="text" class="form-control" name="name" required autofocus>
+                                        <input id="name" type="text" class="form-control" name="name" value="{{auth()->user()->name}}" readonly>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="contact_number" class="form-label">{{ __('Contact Number') }}</label>
-                                        <input id="contact_number" type="text" class="form-control" name="contact_number" required>
+                                        <input id="contact_number" type="text" class="form-control" name="contact_number" value="{{auth()->user()->phone}}" readonly>
                                     </div>
 
                                     <div class="mb-3">
