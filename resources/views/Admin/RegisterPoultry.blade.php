@@ -96,7 +96,7 @@
 
                                     <div class="mb-3">
                                         <label for="date" class="form-label">{{ __('Date') }}</label>
-                                        <input id="date" type="date" class="form-control" name="date" >
+                                        <input id="date" type="date" class="form-control" name="date" readonly>
                                     </div>
                                     <script>
                                         document.getElementById('date').valueAsDate = new Date();
