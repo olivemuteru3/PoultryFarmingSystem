@@ -96,8 +96,11 @@
 
                                     <div class="mb-3">
                                         <label for="date" class="form-label">{{ __('Date') }}</label>
-                                        <input id="date" type="date" class="form-control" name="date" required>
+                                        <input id="date" type="date" class="form-control" name="date" >
                                     </div>
+                                    <script>
+                                        document.getElementById('date').valueAsDate = new Date();
+                                    </script>
 
                                     <div class="mb-3">
                                         <label for="comments" class="form-label">{{ __('Comments') }}</label>
