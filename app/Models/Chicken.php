@@ -10,7 +10,7 @@ class Chicken extends Model
     use HasFactory;
 
     protected $fillable = [
-      'farmername',
+      'farmerName',
       'farmerPhone',
       'number',
       'date',
