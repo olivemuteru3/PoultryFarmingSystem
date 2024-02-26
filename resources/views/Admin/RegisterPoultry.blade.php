@@ -76,22 +76,12 @@
                             <div class="card-header">{{ __('Register Poultry') }}</div>
 
                             <div class="card-body">
-                                <form method="POST" action="">
+                                <form method="POST" action="{{ route('register_poultry') }}">
                                     @csrf
 
                                     <div class="mb-3">
-                                        <label for="poultry_name" class="form-label">{{ __('Poultry Name') }}</label>
-                                        <input id="poultry_name" type="text" class="form-control" name="poultry_name" required autofocus>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="location" class="form-label">{{ __('Location') }}</label>
-                                        <input id="location" type="text" class="form-control" name="location" required>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="capacity" class="form-label">{{ __('Capacity') }}</label>
-                                        <input id="capacity" type="number" class="form-control" name="capacity" required>
+                                        <label for="name" class="form-label">{{ __('Name') }}</label>
+                                        <input id="name" type="text" class="form-control" name="name" required autofocus>
                                     </div>
 
                                     <div class="mb-3">
@@ -100,13 +90,18 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="email" class="form-label">{{ __('Email Address') }}</label>
-                                        <input id="email" type="email" class="form-control" name="email" required>
+                                        <label for="num_chickens" class="form-label">{{ __('Number of Chickens') }}</label>
+                                        <input id="num_chickens" type="number" class="form-control" name="num_chickens" required>
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="description" class="form-label">{{ __('Description') }}</label>
-                                        <textarea id="description" class="form-control" name="description" rows="3" required></textarea>
+                                        <label for="date" class="form-label">{{ __('Date') }}</label>
+                                        <input id="date" type="date" class="form-control" name="date" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="comments" class="form-label">{{ __('Comments') }}</label>
+                                        <textarea id="comments" class="form-control" name="comments" rows="3" required></textarea>
                                     </div>
 
                                     <div class="d-grid gap-2">
@@ -119,7 +114,6 @@
                 </div>
             </div>
         </div>
-
 
 
 
