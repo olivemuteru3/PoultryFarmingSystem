@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chicken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,7 +22,13 @@ class HomeController extends Controller
             if ($usertype === 'farmer') {
                 $bidder = auth()->user();
 
-                return view('Admin.index');
+
+                $chicken=Chicken::all();
+                $Count=Chicken::count();
+
+                //return response()->json($chicken);
+
+                return view('Admin.index', compact('chicken', 'Count'));
             } else if ($usertype === 'admin') {
 
 

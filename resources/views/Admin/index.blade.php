@@ -82,8 +82,8 @@
                     <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                         <i class="fas fa-layer-group fa-3x text-warning"></i>
                         <div class="ms-3">
-                            <p class="mb-2">Total Eggs Produced</p>
-                            <h6 class="mb-0">150,000</h6>
+                            <p class="mb-2">Total Chickens Registered</p>
+                            <h6 class="mb-0">{{$Count}}</h6>
                         </div>
                     </div>
                 </div>
@@ -123,32 +123,25 @@
                         <tr class="text-white">
                             <th scope="col">#</th>
                             <th scope="col">Date</th>
-                            <th scope="col">Name</th>
+                            <th scope="col">Number of chickens</th>
                             <th scope="col">Farmer</th>
-                            <th scope="col">Total</th>
+                            <th scope="col">Phone</th>
                             <th scope="col">Status</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($chicken as $chickens)
                         <tr>
-                            <td>001</td>
-                            <td>01 Jan 2045</td>
-                            <td>Jenid</td>
-                            <td>{{ auth()->user()->name }}</td>
-                            <td>123</td>
-                            <td><span class="badge bg-success">Paid</span></td>
+                            <td>{{$chickens->id}}</td>
+                            <td>{{$chickens->date}}</td>
+                            <td>{{$chickens->number}}</td>
+                            <td>{{ $chickens->farmerName }}</td>
+                            <td>{{$chickens->farmerPhone}}</td>
+                            <td><span class="badge bg-success">{{$chickens->status}}</span></td>
                             <td><a class="btn btn-sm btn-primary" href="#">Detail</a></td>
                         </tr>
-                        <tr>
-                            <td>002</td>
-                            <td>01 Jan 2045</td>
-                            <td>Meyt</td>
-                            <td>{{ auth()->user()->name }}</td>
-                            <td>123</td>
-                            <td><span class="badge bg-success">Paid</span></td>
-                            <td><a class="btn btn-sm btn-primary" href="#">Detail</a></td>
-                        </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

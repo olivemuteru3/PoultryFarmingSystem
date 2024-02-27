@@ -17,14 +17,18 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('Admin.index');
-    })->name('dashboard');
-});
+//Route::middleware([
+//    'auth:sanctum',
+//    config('jetstream.auth_session'),
+//    'verified',
+//])->group(function () {
+//    Route::get('/dashboard', function () {
+//        return view('Admin.index');
+//    })->name('dashboard');
+//});
+
+Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index']);
 
 Route::get('/RegisterPoultry', [App\Http\Controllers\HomeController::class, 'RegisterPoultry'])->name('RegisterPoultry');
+
+Route::post('/RegisteringChickens',[App\Http\Controllers\OperationController::class, 'RegisterChickens'])->name('RegisteringChickens');

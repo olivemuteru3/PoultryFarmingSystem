@@ -76,41 +76,48 @@
                             <div class="card-header">{{ __('Register Poultry') }}</div>
 
                             <div class="card-body">
-                                <form method="POST" action="">
-                                    @csrf
+                                    <form method="POST" action="{{ route('RegisteringChickens') }}">
+                                        @csrf
 
-                                    <div class="mb-3">
-                                        <label for="name" class="form-label">{{ __('Name') }}</label>
-                                        <input id="name" type="text" class="form-control" name="name" value="{{auth()->user()->name}}" readonly>
-                                    </div>
+                                        <div class="mb-3">
+                                            <label for="name" class="form-label">{{ __('Name') }}</label>
+                                            <input id="name" type="text" class="form-control" name="farmerName" value="{{ auth()->user()->name }}" readonly>
+                                        </div>
 
-                                    <div class="mb-3">
-                                        <label for="contact_number" class="form-label">{{ __('Contact Number') }}</label>
-                                        <input id="contact_number" type="text" class="form-control" name="contact_number" value="{{auth()->user()->phone}}" readonly>
-                                    </div>
+                                        <div class="mb-3">
+                                            <label for="contact_number" class="form-label">{{ __('Contact Number') }}</label>
+                                            <input id="contact_number" type="text" class="form-control" name="farmerPhone" value="{{ auth()->user()->phone }}" readonly>
+                                        </div>
 
-                                    <div class="mb-3">
-                                        <label for="num_chickens" class="form-label">{{ __('Number of Chickens') }}</label>
-                                        <input id="num_chickens" type="number" class="form-control" name="num_chickens" required>
-                                    </div>
+                                        <div class="mb-3">
+                                            <label for="num_chickens" class="form-label">{{ __('Number of Chickens') }}</label>
+                                            <input id="num_chickens" type="number" class="form-control @error('chicken_number') is-invalid @enderror" name="chicken_number" required>
+                                            @error('chicken_number')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
 
-                                    <div class="mb-3">
-                                        <label for="date" class="form-label">{{ __('Date') }}</label>
-                                        <input id="date" type="date" class="form-control" name="date" readonly>
-                                    </div>
-                                    <script>
-                                        document.getElementById('date').valueAsDate = new Date();
-                                    </script>
+                                        <div class="mb-3">
+                                            <label for="date" class="form-label">{{ __('Date') }}</label>
+                                            <input id="date" type="date" class="form-control" name="date" readonly>
+                                        </div>
+                                        <script>
+                                            document.getElementById('date').valueAsDate = new Date();
+                                        </script>
 
-                                    <div class="mb-3">
-                                        <label for="comments" class="form-label">{{ __('Comments') }}</label>
-                                        <textarea id="comments" class="form-control" name="comments" rows="3" required></textarea>
-                                    </div>
+                                        <div class="mb-3">
+                                            <label for="comments" class="form-label">{{ __('Comments') }}</label>
+                                            <textarea id="comments" class="form-control @error('comments') is-invalid @enderror" name="comments" rows="3" required></textarea>
+                                            @error('comments')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
 
-                                    <div class="d-grid gap-2">
-                                        <button type="submit" class="btn btn-primary">{{ __('Register') }}</button>
-                                    </div>
-                                </form>
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-primary">{{ __('Register') }}</button>
+                                        </div>
+                                    </form>
+
                             </div>
                         </div>
                     </div>

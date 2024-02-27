@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('farmerPhone');
             $table->string('number');
             $table->string('date');
-            $table->string('comments');
+            $table->text('comments');
             $table->string('status')->default('entered');
             $table->timestamps();
         });
