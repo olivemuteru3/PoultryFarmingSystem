@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="navbar-nav w-100">
-                <a href="/dashboard" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                <a href="/dashboard" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                 <a href="/user/profile" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Profile</a>
                 <a href="/RegisterPoultry" class="nav-item nav-link active"><i class="fa fa-keyboard me-2"></i>Register</a>
                 <a href="/eggs" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Eggs</a>
@@ -67,64 +67,146 @@
         <!-- Navbar End -->
 
 
-        <!-- Form Start -->
+        <!-- Poultry Farming Information Start -->
         <div class="container-fluid pt-4 px-4">
-            <div class="row justify-content-center">
-                <div class="col-sm-12 col-xl-6">
-                    <div class="bg-secondary rounded p-4">
-
-                        <div class="card">
-                            <div class="card-header">{{ __('Register Poultry') }}</div>
-
-                            <div class="card-body">
-                                    <form method="POST" action="{{ route('RegisteringChickens') }}">
-                                        @csrf
-
-                                        <div class="mb-3">
-                                            <label for="name" class="form-label">{{ __('Name') }}</label>
-                                            <input id="name" type="text" class="form-control" name="farmerName" value="{{ auth()->user()->name }}" readonly>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="contact_number" class="form-label">{{ __('Contact Number') }}</label>
-                                            <input id="contact_number" type="text" class="form-control" name="farmerPhone" value="{{ auth()->user()->phone }}" readonly>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="num_chickens" class="form-label">{{ __('Number of Chickens') }}</label>
-                                            <input id="num_chickens" type="number" class="form-control @error('chicken_number') is-invalid @enderror" name="chicken_number" required>
-                                            @error('chicken_number')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="date" class="form-label">{{ __('Date') }}</label>
-                                            <input id="date" type="date" class="form-control" name="date" readonly>
-                                        </div>
-                                        <script>
-                                            document.getElementById('date').valueAsDate = new Date();
-                                        </script>
-
-                                        <div class="mb-3">
-                                            <label for="comments" class="form-label">{{ __('Comments') }}</label>
-                                            <textarea id="comments" class="form-control @error('comments') is-invalid @enderror" name="comments" rows="3" required></textarea>
-                                            @error('comments')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-
-                                        <div class="d-grid gap-2">
-                                            <button type="submit" class="btn btn-primary">{{ __('Register') }}</button>
-                                        </div>
-                                    </form>
-
-                            </div>
+            <div class="row g-4">
+                <div class="col-sm-6 col-xl-3">
+                    <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fas fa-egg fa-3x text-warning"></i>
+                        <div class="ms-3">
+                            <p class="mb-2">Eggs Laid Today</p>
+                            <h6 class="mb-0">{{$todaysEggs}}</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fas fa-layer-group fa-3x text-warning"></i>
+                        <div class="ms-3">
+                            <p class="mb-2">Total Chickens Registered</p>
+                            <h6 class="mb-0">{{$Count}}</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fas fa-dollar-sign fa-3x text-success"></i>
+                        <div class="ms-3">
+                            <p class="mb-2">Total eggs</p>
+                            <h6 class="mb-0">{{$eggs}}</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fas fa-dollar-sign fa-3x text-success"></i>
+                        <div class="ms-3">
+                            <p class="mb-2">Total Revenue from Eggs</p>
+                            <h6 class="mb-0">$150,000</h6>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Poultry Farming Information End -->
+
+
+        <!-- Eggs Statistics -->
+        <div class="container-fluid pt-4 px-4">
+            <div class="bg-secondary text-center rounded p-4">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h6 class="mb-0">Eggs Record</h6>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#addEggsModal">Add New</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table text-start align-middle table-bordered table-hover mb-0">
+                        <thead>
+                        <tr class="text-white">
+                            <th scope="col">#</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Number of eggs</th>
+                            <th scope="col">Farmer</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($chicks as $chickens)
+                            <tr>
+                                <td>{{$chickens->id}}</td>
+                                <td>{{$chickens->date}}</td>
+                                <td>{{$chickens->eggs_number}}</td>
+                                <td>{{ $chickens->farmerName }}</td>
+                                <td>{{$chickens->farmerPhone}}</td>
+                                <td><span class="badge bg-success">{{$chickens->status}}</span></td>
+                                <td><a class="btn btn-sm btn-primary" href="#">Detail</a></td>
+                            </tr>
+                        @endforeach
+                        <!-- Add your dynamic content here (e.g., loop through eggs) -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Recent Sales End -->
+
+        <!-- Add Eggs Modal -->
+        <div class="modal fade" id="addEggsModal" tabindex="-1" aria-labelledby="addEggsModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addEggsModalLabel">Add New Eggs</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Add your form for adding new eggs here -->
+                        <form method="POST" action="{{ route('RegisteringChickens') }}">
+                            @csrf
+
+                            <div class="mb-3">
+                                <label for="name" class="form-label">{{ __('Name') }}</label>
+                                <input id="name" type="text" class="form-control" name="farmerName" value="{{ auth()->user()->name }}" readonly>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="contact_number" class="form-label">{{ __('Contact Number') }}</label>
+                                <input id="contact_number" type="text" class="form-control" name="farmerPhone" value="{{ auth()->user()->phone }}" readonly>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="num_chickens" class="form-label">{{ __('Number of Chickens') }}</label>
+                                <input id="num_chickens" type="number" class="form-control @error('chicken_number') is-invalid @enderror" name="chicken_number" required>
+                                @error('chicken_number')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="date" class="form-label">{{ __('Date') }}</label>
+                                <input id="date" type="date" class="form-control" name="date" readonly>
+                            </div>
+                            <script>
+                                document.getElementById('date').valueAsDate = new Date();
+                            </script>
+
+                            <div class="mb-3">
+                                <label for="comments" class="form-label">{{ __('Comments') }}</label>
+                                <textarea id="comments" class="form-control @error('comments') is-invalid @enderror" name="comments" rows="3" required></textarea>
+                                @error('comments')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">{{ __('Register') }}</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Add Eggs Modal End -->
 
 
 
@@ -134,4 +216,7 @@
 
 
 
-@endsection
+        @endsection
+
+
+

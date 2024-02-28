@@ -75,7 +75,7 @@
                         <i class="fas fa-egg fa-3x text-warning"></i>
                         <div class="ms-3">
                             <p class="mb-2">Eggs Laid Today</p>
-                            <h6 class="mb-0">5000</h6>
+                            <h6 class="mb-0">{{$todaysEggs}}</h6>
                         </div>
                     </div>
                 </div>

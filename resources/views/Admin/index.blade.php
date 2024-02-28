@@ -75,7 +75,7 @@
                         <i class="fas fa-egg fa-3x text-warning"></i>
                         <div class="ms-3">
                             <p class="mb-2">Eggs Laid Today</p>
-                            <h6 class="mb-0">5000</h6>
+                            <h6 class="mb-0">{{$todaysEggs}}</h6>
                         </div>
                     </div>
                 </div>
@@ -116,7 +116,7 @@
             <div class="bg-secondary text-center rounded p-4">
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <h6 class="mb-0">Poultry Record</h6>
-                    <a href="#">Add New</a>
+                    <a href="/RegisterPoultry">VISIT</a>
                 </div>
                 <div class="table-responsive">
                     <table class="table text-start align-middle table-bordered table-hover mb-0">
@@ -128,7 +128,6 @@
                             <th scope="col">Farmer</th>
                             <th scope="col">Phone</th>
                             <th scope="col">Status</th>
-                            <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -140,7 +139,6 @@
                             <td>{{ $chickens->farmerName }}</td>
                             <td>{{$chickens->farmerPhone}}</td>
                             <td><span class="badge bg-success">{{$chickens->status}}</span></td>
-                            <td><a class="btn btn-sm btn-primary" href="#">Detail</a></td>
                         </tr>
                         @endforeach
                         </tbody>
@@ -149,6 +147,42 @@
             </div>
         </div>
         <!-- Recent Sales End -->
+
+        <!-- Recent Sales Start -->
+        <div class="container-fluid pt-4 px-4">
+            <div class="bg-secondary text-center rounded p-4">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h6 class="mb-0">Eggs Record</h6>
+                    <a href="/eggs">VISIT</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table text-start align-middle table-bordered table-hover mb-0">
+                        <thead>
+                        <tr class="text-white">
+                            <th scope="col">#</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Number of chickens</th>
+                            <th scope="col">Farmer</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($eggsRecord as $chickens)
+                            <tr>
+                                <td>{{$chickens->id}}</td>
+                                <td>{{$chickens->date}}</td>
+                                <td>{{$chickens->eggs_number}}</td>
+                                <td>{{ $chickens->farmerName }}</td>
+                                <td>{{$chickens->farmerPhone}}</td>
+                                <td><span class="badge bg-success">{{$chickens->status}}</span></td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
 
 

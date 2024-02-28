@@ -6,6 +6,7 @@ use App\Models\Chicken;
 use App\Models\Egg;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -27,10 +28,20 @@ class HomeController extends Controller
                 $chicken=Chicken::all();
                 $Count=Chicken::sum('number');
                 $eggs=Egg::sum('eggs_number');
+                $eggsRecord=Egg::all();
+
+                // Convert today's date to the format "d M Y"
+                $todayFormatted = Carbon::today()->format('d M Y');
+
+                // Find the eggs laid today based on the formatted date
+                $todaysEggs = Egg::where('date', 'LIKE', $todayFormatted . '%')->sum('eggs_number');
+
+                //$todaysEggs = Egg::whereDate('date', '=', Carbon::createFromFormat('d M Y', Carbon::today()->format('d M Y')))->sum('eggs_number');
+
 
                 //return response()->json($chicken);
 
-                return view('Admin.index', compact('chicken', 'Count', 'eggs'));
+                return view('Admin.index', compact('chicken', 'Count', 'eggs', 'eggsRecord', 'todaysEggs'));
             } else if ($usertype === 'admin') {
 
 
@@ -49,7 +60,18 @@ class HomeController extends Controller
             if ($usertype === 'farmer') {
                 $bidder = auth()->user();
 
-                return view('Admin.RegisterPoultry');
+                $Count=Chicken::sum('number');
+                $eggs=Egg::sum('eggs_number');
+                $chicks = Chicken::all();
+
+                // Convert today's date to the format "d M Y"
+                $todayFormatted = Carbon::today()->format('d M Y');
+
+                // Find the eggs laid today based on the formatted date
+                $todaysEggs = Egg::where('date', 'LIKE', $todayFormatted . '%')->sum('eggs_number');
+
+
+                return view('Admin.RegisterPoultry', compact('eggs', 'chicks', 'Count', 'todaysEggs'));
             } else if ($usertype === 'admin') {
 
 
@@ -66,7 +88,12 @@ class HomeController extends Controller
         $Count=Chicken::sum('number');
         $eggs=Egg::sum('eggs_number');
         $eggsCount = Egg::all();
+        // Convert today's date to the format "d M Y"
+        $todayFormatted = Carbon::today()->format('d M Y');
 
-        return view('Admin.eggs', compact('Count', 'eggs', 'eggsCount'));
+        // Find the eggs laid today based on the formatted date
+        $todaysEggs = Egg::where('date', 'LIKE', $todayFormatted . '%')->sum('eggs_number');
+
+        return view('Admin.eggs', compact('Count', 'eggs', 'eggsCount', 'todaysEggs'));
     }
 }
