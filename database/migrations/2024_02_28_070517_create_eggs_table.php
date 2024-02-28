@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('eggs', function (Blueprint $table) {
             $table->id();
+            $table->string('farmerName');
+            $table->string('farmerPhone');
+            $table->string('date');
+            $table->string('number');
+            $table->text('comments');
+            $table->string('status')->default('entered');
             $table->timestamps();
         });
     }
