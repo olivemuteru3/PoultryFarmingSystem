@@ -23,8 +23,8 @@
             <div class="navbar-nav w-100">
                 <a href="/dashboard" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                 <a href="/user/profile" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Profile</a>
-                <a href="/RegisterPoultry" class="nav-item nav-link active"><i class="fa fa-keyboard me-2"></i>Chickens</a>
-                <a href="/eggs" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Eggs</a>
+                <a href="/RegisterPoultry" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Chickens</a>
+                <a href="/eggs" class="nav-item nav-link active"><i class="fa fa-keyboard me-2"></i>Eggs</a>
                 <a href="/sales" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Sales</a>
 
             </div>
@@ -112,102 +112,98 @@
         <!-- Poultry Farming Information End -->
 
 
-        <!-- Eggs Statistics -->
+        <!-- Eggs details -->
         <div class="container-fluid pt-4 px-4">
             <div class="bg-secondary text-center rounded p-4">
                 <div class="d-flex align-items-center justify-content-between mb-4">
-                    <h6 class="mb-0">Eggs Record</h6>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#addEggsModal">Add New</a>
+                    <h6 class="mb-0 text-light">Eggs Record</h6>
+                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEggsModal">Add New</a>
                 </div>
-                <div class="table-responsive">
-                    <table class="table text-start align-middle table-bordered table-hover mb-0">
-                        <thead>
-                        <tr class="text-white">
-                            <th scope="col">#</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Number of eggs</th>
-                            <th scope="col">Farmer</th>
-                            <th scope="col">Phone</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($chicks as $chickens)
-                            <tr>
-                                <td>{{$chickens->id}}</td>
-                                <td>{{$chickens->date}}</td>
-                                <td>{{$chickens->eggs_number}}</td>
-                                <td>{{ $chickens->farmerName }}</td>
-                                <td>{{$chickens->farmerPhone}}</td>
-                                <td><span class="badge bg-success">{{$chickens->status}}</span></td>
-                                <td><a class="btn btn-sm btn-primary" href="/chickenDetails/{{$chickens->id}}">Detail</a></td>
-                            </tr>
-                        @endforeach
-                        <!-- Add your dynamic content here (e.g., loop through eggs) -->
-                        </tbody>
-                    </table>
+
+                <!-- Individual Egg Entry Start -->
+                <div class="row g-4">
+                    <!-- Left side for the image -->
+                    <div class="col-md-6">
+                        <img src="https://cdn.britannica.com/94/151894-050-F72A5317/Brown-eggs.jpg" class="img-fluid rounded-start" alt="Egg Image">
+                    </div>
+                    <!-- Right side for the information -->
+                    <div class="col-md-6">
+                        <div class="card bg-gray-100 border-light rounded p-4">
+                            <div class="card-header bg-primary text-light">
+                                <h5 class="mb-0">Egg Details</h5>
+                            </div>
+                            <div class="card-body">
+                                <!-- Date -->
+                                <div class="mb-4">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex align-items-center">
+                                            <i class="far fa-calendar-alt fa-lg me-2 text-primary"></i>
+                                            <span class="text-secondary">Date:</span>
+                                        </div>
+                                        <div class="flex-grow-1 text-end">
+                                            <strong class="text-dark">{{$eggsCount->date}}</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Number of Eggs -->
+                                <div class="mb-4">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex align-items-center">
+                                            <i class="fas fa-egg fa-lg me-2 text-warning"></i>
+                                            <span class="text-secondary">Number of Eggs:</span>
+                                        </div>
+                                        <div class="flex-grow-1 text-end">
+                                            <strong class="text-dark">{{$eggsCount->eggs_number}}</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Status -->
+                                <div class="mb-4">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex align-items-center">
+                                            <i class="fas fa-check-circle fa-lg me-2 text-success"></i>
+                                            <span class="text-secondary">Status:</span>
+                                        </div>
+                                        <div class="flex-grow-1 text-end">
+                                            <strong class="badge bg-success">{{$eggsCount->status}}</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="my-4">
+                                <!-- Comments -->
+                                <div class="mb-0">
+                                    <div class="d-flex align-items-center">
+                                        <i class="far fa-comment-alt fa-lg me-2 text-secondary"></i>
+                                        <span class="text-secondary">Comments:</span>
+                                    </div>
+                                    <div class="mt-2">
+                                        <strong class="text-dark">{{$eggsCount->comments}}</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-gray-100 border-light">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <i class="far fa-user fa-lg me-2 text-info"></i>
+                                        <span class="text-secondary">farmerName:</span> <strong class="text-dark">{{$eggsCount->farmerPhone}}</strong>
+                                    </div>
+                                    <div>
+                                        <i class="fas fa-phone fa-lg me-2 text-success"></i>
+                                        <span class="text-secondary">farmerPhone:</span> <strong class="text-dark">{{$eggsCount->farmerPhone}}</strong>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+                </div>
+                <!-- Individual Egg Entry End -->
+
             </div>
         </div>
-        <!-- Recent Sales End -->
-
-        <!-- Add Eggs Modal -->
-        <div class="modal fade" id="addEggsModal" tabindex="-1" aria-labelledby="addEggsModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="addEggsModalLabel">Add New Eggs</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Add your form for adding new eggs here -->
-                        <form method="POST" action="{{ route('RegisteringChickens') }}">
-                            @csrf
-
-                            <div class="mb-3">
-                                <label for="name" class="form-label">{{ __('Name') }}</label>
-                                <input id="name" type="text" class="form-control" name="farmerName" value="{{ auth()->user()->name }}" readonly>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="contact_number" class="form-label">{{ __('Contact Number') }}</label>
-                                <input id="contact_number" type="text" class="form-control" name="farmerPhone" value="{{ auth()->user()->phone }}" readonly>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="num_chickens" class="form-label">{{ __('Number of Chickens') }}</label>
-                                <input id="num_chickens" type="number" class="form-control @error('chicken_number') is-invalid @enderror" name="chicken_number" required>
-                                @error('chicken_number')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="date" class="form-label">{{ __('Date') }}</label>
-                                <input id="date" type="date" class="form-control" name="date" readonly>
-                            </div>
-                            <script>
-                                document.getElementById('date').valueAsDate = new Date();
-                            </script>
-
-                            <div class="mb-3">
-                                <label for="comments" class="form-label">{{ __('Comments') }}</label>
-                                <textarea id="comments" class="form-control @error('comments') is-invalid @enderror" name="comments" rows="3" required></textarea>
-                                @error('comments')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-primary">{{ __('Register') }}</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Add Eggs Modal End -->
+        <!-- Eggs details End -->
 
 
 
@@ -217,7 +213,6 @@
 
 
 
-        @endsection
 
 
-
+@endsection

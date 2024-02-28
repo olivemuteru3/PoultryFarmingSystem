@@ -24,7 +24,8 @@
                 <a href="/dashboard" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                 <a href="/user/profile" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Profile</a>
                 <a href="/RegisterPoultry" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Register</a>
-                <a href="/eggs" class="nav-item nav-link active"><i class="fa fa-keyboard me-2"></i>Eggs</a>
+                <a href="/eggs" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Eggs</a>
+                <a href="/sales" class="nav-item nav-link active"><i class="fa fa-keyboard me-2"></i>Sales</a>
 
             </div>
         </nav>
@@ -111,34 +112,63 @@
         <!-- Poultry Farming Information End -->
 
 
-        <!-- Eggs Statistics -->
+        <!-- Poultry Products Sales -->
         <div class="container-fluid pt-4 px-4">
             <div class="bg-secondary text-center rounded p-4">
                 <div class="d-flex align-items-center justify-content-between mb-4">
-                    <h6 class="mb-0">Eggs Record</h6>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#addEggsModal">Add New</a>
+                    <h6 class="mb-0">Poultry Products Sales</h6>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#addSalesModal">Sales</a>
                 </div>
-                <div class="table-responsive">
-                    <table class="table text-start align-middle table-bordered table-hover mb-0">
-                        <thead>
-                        <tr class="text-white">
-                            <th scope="col">#</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Number of eggs</th>
-                            <th scope="col">Farmer</th>
-                            <th scope="col">Phone</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <!-- Add your dynamic content here (e.g., loop through eggs) -->
-                        </tbody>
-                    </table>
+
+                <!-- Modal for Sales Form -->
+                <div class="modal fade" id="addSalesModal" tabindex="-1" aria-labelledby="addSalesModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="addSalesModalLabel">Add Sales</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="" method="post">
+                                    @csrf
+                                    <div class="mb-3">
+                                        <label for="productType" class="form-label">Product Type</label>
+                                        <select class="form-select" id="productType" name="productType" required>
+                                            <option value="eggs">Eggs</option>
+                                            <option value="chickens">Chickens</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="quantity" class="form-label">Quantity</label>
+                                        <input type="number" class="form-control" id="quantity" name="quantity" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="price" class="form-label">Price</label>
+                                        <input type="text" class="form-control" id="price" name="price" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="buyerName" class="form-label">Buyer Name</label>
+                                        <input type="text" class="form-control" id="buyerName" name="buyerName" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="buyerPhone" class="form-label">Buyer Phone</label>
+                                        <input type="tel" class="form-control" id="buyerPhone" name="buyerPhone" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="saleDate" class="form-label">Sale Date</label>
+                                        <input type="date" class="form-control" id="saleDate" name="saleDate" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
-        <!-- Recent Sales End -->
+        <!-- Poultry Products Sales End -->
+
 
         <!-- Add Eggs Modal -->
         <div class="modal fade" id="addEggsModal" tabindex="-1" aria-labelledby="addEggsModalLabel" aria-hidden="true">

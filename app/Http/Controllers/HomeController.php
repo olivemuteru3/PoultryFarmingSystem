@@ -96,4 +96,53 @@ class HomeController extends Controller
 
         return view('Admin.eggs', compact('Count', 'eggs', 'eggsCount', 'todaysEggs'));
     }
+
+    public function eggsDetails(Request $request)
+    {
+
+        $Count=Chicken::sum('number');
+        $eggs=Egg::sum('eggs_number');
+        //$eggsCount = Egg::where('id', $request->id)->get();
+        $eggsCount = Egg::find($request->id);
+        // Convert today's date to the format "d M Y"
+        $todayFormatted = Carbon::today()->format('d M Y');
+
+        // Find the eggs laid today based on the formatted date
+        $todaysEggs = Egg::where('date', 'LIKE', $todayFormatted . '%')->sum('eggs_number');
+        return view('Admin.eggsdetails', compact('Count', 'eggs', 'eggsCount', 'todaysEggs'));
+
+    }
+
+    public function chickenDetails(Request $request)
+    {
+
+        $Count=Chicken::sum('number');
+        $eggs=Egg::sum('eggs_number');
+        //$eggsCount = Egg::where('id', $request->id)->get();
+        $eggsCount = Chicken::find($request->id);
+        // Convert today's date to the format "d M Y"
+        $todayFormatted = Carbon::today()->format('d M Y');
+
+        // Find the eggs laid today based on the formatted date
+        $todaysEggs = Egg::where('date', 'LIKE', $todayFormatted . '%')->sum('eggs_number');
+        return view('Admin.chickendetails', compact('Count', 'eggs', 'eggsCount', 'todaysEggs'));
+
+    }
+
+    public function sales()
+    {
+
+        $Count=Chicken::sum('number');
+        $eggs=Egg::sum('eggs_number');
+        //$eggsCount = Egg::where('id', $request->id)->get();
+        $eggsCount = Chicken::all();
+        $chicken=Egg::all();
+        // Convert today's date to the format "d M Y"
+        $todayFormatted = Carbon::today()->format('d M Y');
+
+        // Find the eggs laid today based on the formatted date
+        $todaysEggs = Egg::where('date', 'LIKE', $todayFormatted . '%')->sum('eggs_number');
+        return view('Admin.sales', compact('Count', 'eggs', 'eggsCount', 'todaysEggs'));
+
+    }
 }

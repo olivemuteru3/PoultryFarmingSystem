@@ -23,8 +23,9 @@
             <div class="navbar-nav w-100">
                 <a href="/dashboard" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                 <a href="/user/profile" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Profile</a>
-                <a href="/RegisterPoultry" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Register</a>
+                <a href="/RegisterPoultry" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Chickens</a>
                 <a href="/eggs" class="nav-item nav-link active"><i class="fa fa-keyboard me-2"></i>Eggs</a>
+                <a href="/sales" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Sales</a>
 
             </div>
         </nav>
@@ -140,7 +141,7 @@
                                 <td>{{ $chickens->farmerName }}</td>
                                 <td>{{$chickens->farmerPhone}}</td>
                                 <td><span class="badge bg-success">{{$chickens->status}}</span></td>
-                                <td><a class="btn btn-sm btn-primary" href="#">Detail</a></td>
+                                <td><a class="btn btn-sm btn-primary" href="/eggsDetails/{{$chickens->id}}">Detail</a></td>
                             </tr>
                         @endforeach
                         <!-- Add your dynamic content here (e.g., loop through eggs) -->
