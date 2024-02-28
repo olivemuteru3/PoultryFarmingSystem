@@ -30,5 +30,6 @@ Route::get('/', function () {
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
 Route::get('/RegisterPoultry', [App\Http\Controllers\HomeController::class, 'RegisterPoultry'])->name('RegisterPoultry');
+Route::get('/eggs', [App\Http\Controllers\HomeController::class, 'eggs'])->name('eggs');
 
 Route::post('/RegisteringChickens',[App\Http\Controllers\OperationController::class, 'RegisterChickens'])->name('RegisteringChickens');

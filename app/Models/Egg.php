@@ -13,7 +13,7 @@ class Egg extends Model
         'farmerName',
         'farmerPhone',
         'date',
-        'number',
+        'eggs_number',
         'comments',
         'status',
     ];

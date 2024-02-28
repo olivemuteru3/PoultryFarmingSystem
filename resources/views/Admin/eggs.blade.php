@@ -111,12 +111,12 @@
         <!-- Poultry Farming Information End -->
 
 
-        <!-- Recent Sales Start -->
+        <!-- Eggs Statistics -->
         <div class="container-fluid pt-4 px-4">
             <div class="bg-secondary text-center rounded p-4">
                 <div class="d-flex align-items-center justify-content-between mb-4">
-                    <h6 class="mb-0">Poultry Record</h6>
-                    <a href="#">Add New</a>
+                    <h6 class="mb-0">Eggs Record</h6>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#addEggsModal">Add New</a>
                 </div>
                 <div class="table-responsive">
                     <table class="table text-start align-middle table-bordered table-hover mb-0">
@@ -124,7 +124,7 @@
                         <tr class="text-white">
                             <th scope="col">#</th>
                             <th scope="col">Date</th>
-                            <th scope="col">Number of chickens</th>
+                            <th scope="col">Number of eggs</th>
                             <th scope="col">Farmer</th>
                             <th scope="col">Phone</th>
                             <th scope="col">Status</th>
@@ -132,23 +132,43 @@
                         </tr>
                         </thead>
                         <tbody>
-{{--                        @foreach($chicken as $chickens)--}}
-{{--                            <tr>--}}
-{{--                                <td>{{$chickens->id}}</td>--}}
-{{--                                <td>{{$chickens->date}}</td>--}}
-{{--                                <td>{{$chickens->number}}</td>--}}
-{{--                                <td>{{ $chickens->farmerName }}</td>--}}
-{{--                                <td>{{$chickens->farmerPhone}}</td>--}}
-{{--                                <td><span class="badge bg-success">{{$chickens->status}}</span></td>--}}
-{{--                                <td><a class="btn btn-sm btn-primary" href="#">Detail</a></td>--}}
-{{--                            </tr>--}}
-{{--                        @endforeach--}}
+                        <!-- Add your dynamic content here (e.g., loop through eggs) -->
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
         <!-- Recent Sales End -->
+
+        <!-- Add Eggs Modal -->
+        <div class="modal fade" id="addEggsModal" tabindex="-1" aria-labelledby="addEggsModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addEggsModalLabel">Add New Eggs</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Add your form for adding new eggs here -->
+                        <form action="" method="post">
+                            @csrf
+                            <!-- Add your form fields here -->
+                            <div class="mb-3">
+                                <label for="eggs_number" class="form-label">Number of Eggs</label>
+                                <input type="number" class="form-control" id="eggs_number" name="eggs_number" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="comments" class="form-label">Comments</label>
+                                <textarea class="form-control" id="comments" name="comments" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add Eggs</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Add Eggs Modal End -->
+
 
 
 
