@@ -50,13 +50,23 @@ class OperationController extends Controller
             ]);
 
             $eggs = new Egg();
-            $user= auth()->user();
+            $user = auth()->user();
 
-            $eggs->farmerPhone=$user->name;
-            $eggs->farmerPhone=$user->phone;
-            $eggs->date=Carbon::now()->format('d M Y');
-            $eggs->eggs_number=$request->eggs_number;
+            // Assuming $user->phone is correct, change $eggs->farmerPhone to $eggs->farmerName
+            $eggs->farmerName = $user->name;
+            $eggs->farmerPhone = $user->phone;
+
+            // Formatting the date using Carbon
+            $eggs->date = Carbon::now()->format('d M Y');
+
+            $eggs->eggs_number = $request->eggs_number;
             $eggs->comments = $request->comments;
+
+
+           // return response()->json($eggs);
+            $eggs->save();
+
+            return redirect()->back()->with('success', 'eggs registered successfully');
 
         }catch (\Exception $e) {
             // Log the exception or handle it accordingly

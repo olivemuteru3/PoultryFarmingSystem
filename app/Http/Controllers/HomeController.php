@@ -64,7 +64,8 @@ class HomeController extends Controller
     {
         $Count=Chicken::sum('number');
         $eggs=Egg::sum('eggs_number');
+        $eggsCount = Egg::all();
 
-        return view('Admin.eggs', compact('Count', 'eggs'));
+        return view('Admin.eggs', compact('Count', 'eggs', 'eggsCount'));
     }
 }
