@@ -26,10 +26,11 @@ class HomeController extends Controller
 
                 $chicken=Chicken::all();
                 $Count=Chicken::sum('number');
+                $eggs=Egg::sum('eggs_number');
 
                 //return response()->json($chicken);
 
-                return view('Admin.index', compact('chicken', 'Count'));
+                return view('Admin.index', compact('chicken', 'Count', 'eggs'));
             } else if ($usertype === 'admin') {
 
 

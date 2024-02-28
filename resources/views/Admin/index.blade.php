@@ -92,8 +92,8 @@
                     <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                         <i class="fas fa-dollar-sign fa-3x text-success"></i>
                         <div class="ms-3">
-                            <p class="mb-2">Today Revenue from Eggs</p>
-                            <h6 class="mb-0">$5000</h6>
+                            <p class="mb-2">Total Eggs</p>
+                            <h6 class="mb-0">{{$eggs}}</h6>
                         </div>
                     </div>
                 </div>

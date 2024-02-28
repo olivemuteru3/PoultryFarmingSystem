@@ -92,8 +92,8 @@
                     <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                         <i class="fas fa-dollar-sign fa-3x text-success"></i>
                         <div class="ms-3">
-                            <p class="mb-2">Today Revenue from Eggs</p>
-                            <h6 class="mb-0">$5000</h6>
+                            <p class="mb-2">Total eggs</p>
+                            <h6 class="mb-0">{{$eggs}}</h6>
                         </div>
                     </div>
                 </div>
@@ -132,6 +132,17 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($eggsCount as $chickens)
+                            <tr>
+                                <td>{{$chickens->id}}</td>
+                                <td>{{$chickens->date}}</td>
+                                <td>{{$chickens->eggs_number}}</td>
+                                <td>{{ $chickens->farmerName }}</td>
+                                <td>{{$chickens->farmerPhone}}</td>
+                                <td><span class="badge bg-success">{{$chickens->status}}</span></td>
+                                <td><a class="btn btn-sm btn-primary" href="#">Detail</a></td>
+                            </tr>
+                        @endforeach
                         <!-- Add your dynamic content here (e.g., loop through eggs) -->
                         </tbody>
                     </table>
