@@ -132,17 +132,17 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($chicken as $chickens)
-                            <tr>
-                                <td>{{$chickens->id}}</td>
-                                <td>{{$chickens->date}}</td>
-                                <td>{{$chickens->number}}</td>
-                                <td>{{ $chickens->farmerName }}</td>
-                                <td>{{$chickens->farmerPhone}}</td>
-                                <td><span class="badge bg-success">{{$chickens->status}}</span></td>
-                                <td><a class="btn btn-sm btn-primary" href="#">Detail</a></td>
-                            </tr>
-                        @endforeach
+{{--                        @foreach($chicken as $chickens)--}}
+{{--                            <tr>--}}
+{{--                                <td>{{$chickens->id}}</td>--}}
+{{--                                <td>{{$chickens->date}}</td>--}}
+{{--                                <td>{{$chickens->number}}</td>--}}
+{{--                                <td>{{ $chickens->farmerName }}</td>--}}
+{{--                                <td>{{$chickens->farmerPhone}}</td>--}}
+{{--                                <td><span class="badge bg-success">{{$chickens->status}}</span></td>--}}
+{{--                                <td><a class="btn btn-sm btn-primary" href="#">Detail</a></td>--}}
+{{--                            </tr>--}}
+{{--                        @endforeach--}}
                         </tbody>
                     </table>
                 </div>
