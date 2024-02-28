@@ -33,3 +33,5 @@ Route::get('/RegisterPoultry', [App\Http\Controllers\HomeController::class, 'Reg
 Route::get('/eggs', [App\Http\Controllers\HomeController::class, 'eggs'])->name('eggs');
 
 Route::post('/RegisteringChickens',[App\Http\Controllers\OperationController::class, 'RegisterChickens'])->name('RegisteringChickens');
+
+Route::post('/RegisterEggs',[App\Http\Controllers\OperationController::class, 'RegisterEggs'])->name('RegisterEggs');

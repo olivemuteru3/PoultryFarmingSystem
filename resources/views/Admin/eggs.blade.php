@@ -150,7 +150,7 @@
                     </div>
                     <div class="modal-body">
                         <!-- Add your form for adding new eggs here -->
-                        <form action="" method="post">
+                        <form action="{{route('RegisterEggs')}}" method="post">
                             @csrf
                             <!-- Add your form fields here -->
                             <div class="mb-3">
