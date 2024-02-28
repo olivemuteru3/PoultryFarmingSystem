@@ -58,4 +58,10 @@ class HomeController extends Controller
         }
 
     }
+
+    public function eggs()
+    {
+
+        return view('Admin.eggs');
+    }
 }
