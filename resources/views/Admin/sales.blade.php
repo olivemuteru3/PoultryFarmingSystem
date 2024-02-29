@@ -117,8 +117,38 @@
             <div class="bg-secondary text-center rounded p-4">
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <h6 class="mb-0">Poultry Products Sales</h6>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#addSalesModal">Sales</a>
+                    <div class="d-flex">
+                        <a href="#" class="btn btn-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#addSalesModal">New Sale</a>
+                        <a href="/newPrices" class="btn btn-info btn-sm">Prices</a>
+                    </div>
                 </div>
+
+
+
+                <div class="table-responsive">
+                    <table class="table text-start align-middle table-bordered table-hover mb-0">
+                        <thead class="text-white">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{-- Add your sales data dynamically --}}
+                        {{-- @foreach($sales as $sale)
+                            <tr>
+                                <td>{{$sale->id}}</td>
+                                <td>{{$sale->type}}</td>
+                                <td>{{$sale->price}}</td>
+                                <td><a href="#" class="btn btn-info btn-sm">Details</a></td>
+                            </tr>
+                        @endforeach --}}
+                        </tbody>
+                    </table>
+                </div>
+
 
                 <!-- Modal for Sales Form -->
                 <div class="modal fade" id="addSalesModal" tabindex="-1" aria-labelledby="addSalesModalLabel" aria-hidden="true">
@@ -168,37 +198,6 @@
             </div>
         </div>
         <!-- Poultry Products Sales End -->
-
-
-        <!-- Add Eggs Modal -->
-        <div class="modal fade" id="addEggsModal" tabindex="-1" aria-labelledby="addEggsModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="addEggsModalLabel">Add New Eggs</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Add your form for adding new eggs here -->
-                        <form action="{{route('RegisterEggs')}}" method="post">
-                            @csrf
-                            <!-- Add your form fields here -->
-                            <div class="mb-3">
-                                <label for="eggs_number" class="form-label">Number of Eggs</label>
-                                <input type="number" class="form-control" id="eggs_number" name="eggs_number" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="comments" class="form-label">Comments</label>
-                                <textarea class="form-control" id="comments" name="comments" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Add Eggs</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Add Eggs Modal End -->
-
 
 
 
