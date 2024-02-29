@@ -4,7 +4,6 @@
 
 @section('content')
 
-    <!-- Add this in your HTML head section -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
@@ -121,17 +120,96 @@
             <div class="bg-secondary text-center rounded p-4">
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <h6 class="mb-0">Poultry Products Sales</h6>
-                    <div class="d-flex">
-                        <a href="/newSales" class="btn btn-primary btn-sm me-2">New Sale</a>
-                        <a href="/prices" class="btn btn-info btn-sm">Prices</a>
+                </div>
+
+                <!-- Sales Entry Form -->
+                <!-- Sales Entry Form -->
+                <form action="" method="post">
+                    @csrf
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <!-- Sales Type -->
+                            <div class="mb-3">
+                                <label for="productType" class="form-label">Sales Type</label>
+                                <select class="form-select" id="productType" name="productType" required>
+                                    @foreach($price as $price)
+                                        <option value="{{ $price->salesType }}" data-price="{{ $price->price }}">{{ $price->salesType }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <!-- Price -->
+                            <div class="mb-3">
+                                <label for="price" class="form-label">Price</label>
+                                <input type="text" class="form-control" id="price" name="price" readonly required>
+                            </div>
+
+                            <!-- Quantity -->
+                            <!-- Quantity -->
+                            <div class="mb-3">
+                                <label for="quantity" class="form-label">Quantity</label>
+                                <input type="number" class="form-control" id="quantity" name="quantity" oninput="calculateTotal()" required>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <!-- Total -->
+                            <div class="mb-3">
+                                <label for="total" class="form-label">Total</label>
+                                <input type="text" class="form-control" id="total" name="total" readonly required>
+                            </div>
+                            <!-- Buyer Name -->
+                            <div class="mb-3">
+                                <label for="buyerName" class="form-label">Buyer Name</label>
+                                <input type="text" class="form-control" id="buyerName" name="buyerName" required>
+                            </div>
+                            <!-- Buyer Phone -->
+                            <div class="mb-3">
+                                <label for="buyerPhone" class="form-label">Buyer Phone</label>
+                                <input type="tel" class="form-control" id="buyerPhone" name="buyerPhone" required>
+                            </div>
+                        </div>
                     </div>
-                </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+                <!-- jQuery script to update price field -->
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script>
+                    $(document).ready(function() {
+                        $('#productType').change(function() {
+                            // Fetch the corresponding price for the selected sales type
+                            let selectedOption = $(this).find(':selected');
+                            let selectedPrice = selectedOption.data('price');
+                            $('#price').val(selectedPrice ? selectedPrice : '');
+                        });
+                    });
+                </script>
+
+
+                <script>
+                    function calculateTotal() {
+                        let price = parseFloat(document.getElementById('price').value);
+                        let quantity = parseFloat(document.getElementById('quantity').value);
+                        let total = price * quantity;
+                        document.getElementById('total').value = isNaN(total) ? '' : total.toFixed(2);
+                    }
+                </script>
 
 
 
-                <div class="table-responsive">
-                   <label>Hello</label>
-                </div>
+
+                <!-- Sales Entry Form End -->
+
+            </div>
+        </div>
+        <!-- Poultry Products Sales End -->
+
+        <!-- jQuery script to update price field -->
+
+
+
 
 
 

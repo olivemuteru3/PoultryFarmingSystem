@@ -195,20 +195,7 @@
                                         <label for="saleDate" class="form-label">Sale Date</label>
                                         <input type="date" class="form-control" id="saleDate" name="saleDate" required>
                                     </div>
-                                    <div id="productFields">
-                                        <!-- Initial Product Type and Price Fields -->
-                                        <div class="mb-3 product-field">
-                                            <label for="productType" class="form-label">Product Type</label>
-                                            <select class="form-select productType" name="productType[]" required>
-                                                @foreach($price as $price)
-                                                    <option value="{{ $price->salesType }}">{{ $price->salesType }}</option>
-                                                @endforeach
-                                            </select>
-                                            <input type="text" class="form-control price" name="price[]" required>
-                                        </div>
-                                    </div>
-                                    <!-- Add New Product Type Button -->
-                                    <button type="button" class="btn btn-success" id="addProductType">Add Product Type</button>
+
 
 
                                     <button type="submit" class="btn btn-primary">Submit</button>
