@@ -8,6 +8,7 @@ use App\Models\Price;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use mysql_xdevapi\Exception;
 
 class OperationController extends Controller
 {
@@ -77,13 +78,26 @@ class OperationController extends Controller
     }
 
 
-    public function newPrice()
+    public function newPrice(Request $request)
     {
-        $price = new Price();
 
-        $price->salesType=$request->salesType;
-        $price->price=$request->price;
-        $price->date=now();
+        try {
+            $request->validate([
+                'salesType' => 'required',
+                'price' => 'required|integer',
+            ]);
+            $price = new Price();
+
+            $price->salesType=$request->salesType;
+            $price->price=$request->price;
+            $price->date=now();
+
+            return response()->json($price);
+        }
+        catch  (\Exception $e) {
+            // Log the exception or handle it accordingly
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
 
 
     }
