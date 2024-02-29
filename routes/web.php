@@ -35,6 +35,8 @@ Route::get('/eggsDetails/{id}', [App\Http\Controllers\HomeController::class, 'eg
 Route::get('/chickenDetails/{id}', [App\Http\Controllers\HomeController::class, 'chickenDetails']);
 Route::get('/sales', [App\Http\Controllers\HomeController::class, 'sales']);
 
+Route::get('/prices', [App\Http\Controllers\HomeController::class, 'prices'])->name('prices');
+
 Route::post('/RegisteringChickens',[App\Http\Controllers\OperationController::class, 'RegisterChickens'])->name('RegisteringChickens');
 
 Route::post('/RegisterEggs',[App\Http\Controllers\OperationController::class, 'RegisterEggs'])->name('RegisterEggs');

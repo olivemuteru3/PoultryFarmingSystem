@@ -119,7 +119,7 @@
                     <h6 class="mb-0">Poultry Products Sales</h6>
                     <div class="d-flex">
                         <a href="#" class="btn btn-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#addSalesModal">New Sale</a>
-                        <a href="/newPrices" class="btn btn-info btn-sm">Prices</a>
+                        <a href="/prices" class="btn btn-info btn-sm">Prices</a>
                     </div>
                 </div>
 
