@@ -117,18 +117,16 @@
             <div class="bg-secondary text-center rounded p-4">
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <h6 class="mb-0">Poultry Record</h6>
-                    <a href="/RegisterPoultry">VISIT</a>
+                    <a href="#" class="btn btn-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#addSalesModal">New Price</a>
                 </div>
                 <div class="table-responsive">
                     <table class="table text-start align-middle table-bordered table-hover mb-0">
                         <thead>
                         <tr class="text-white">
                             <th scope="col">#</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Number of chickens</th>
-                            <th scope="col">Farmer</th>
-                            <th scope="col">Phone</th>
-                            <th scope="col">Status</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Price Per each</th>
+                            <th scope="col">Lasted Updated</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -138,8 +136,6 @@
                                 <td>{{$chickens->date}}</td>
                                 <td>{{$chickens->number}}</td>
                                 <td>{{ $chickens->farmerName }}</td>
-                                <td>{{$chickens->farmerPhone}}</td>
-                                <td><span class="badge bg-success">{{$chickens->status}}</span></td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -148,42 +144,6 @@
             </div>
         </div>
         <!-- Recent Sales End -->
-
-        <!-- Recent Sales Start -->
-        <div class="container-fluid pt-4 px-4">
-            <div class="bg-secondary text-center rounded p-4">
-                <div class="d-flex align-items-center justify-content-between mb-4">
-                    <h6 class="mb-0">Eggs Record</h6>
-                    <a href="/eggs">VISIT</a>
-                </div>
-                <div class="table-responsive">
-                    <table class="table text-start align-middle table-bordered table-hover mb-0">
-                        <thead>
-                        <tr class="text-white">
-                            <th scope="col">#</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Number of chickens</th>
-                            <th scope="col">Farmer</th>
-                            <th scope="col">Phone</th>
-                            <th scope="col">Status</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($eggsRecord as $chickens)
-                            <tr>
-                                <td>{{$chickens->id}}</td>
-                                <td>{{$chickens->date}}</td>
-                                <td>{{$chickens->eggs_number}}</td>
-                                <td>{{ $chickens->farmerName }}</td>
-                                <td>{{$chickens->farmerPhone}}</td>
-                                <td><span class="badge bg-success">{{$chickens->status}}</span></td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
 
 
 
