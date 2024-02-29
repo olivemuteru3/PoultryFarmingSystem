@@ -36,6 +36,7 @@ Route::get('/chickenDetails/{id}', [App\Http\Controllers\HomeController::class, 
 Route::get('/sales', [App\Http\Controllers\HomeController::class, 'sales']);
 
 Route::get('/prices', [App\Http\Controllers\HomeController::class, 'prices'])->name('prices');
+Route::get('/newSales', [App\Http\Controllers\HomeController::class, 'newSales']);
 
 Route::post('/RegisteringChickens',[App\Http\Controllers\OperationController::class, 'RegisterChickens'])->name('RegisteringChickens');
 

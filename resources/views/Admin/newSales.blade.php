@@ -130,108 +130,11 @@
 
 
                 <div class="table-responsive">
-                    <table class="table text-start align-middle table-bordered table-hover mb-0">
-                        <thead class="text-white">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {{-- Add your sales data dynamically --}}
-                        {{-- @foreach($sales as $sale)
-                            <tr>
-                                <td>{{$sale->id}}</td>
-                                <td>{{$sale->type}}</td>
-                                <td>{{$sale->price}}</td>
-                                <td><a href="#" class="btn btn-info btn-sm">Details</a></td>
-                            </tr>
-                        @endforeach --}}
-                        </tbody>
-                    </table>
+                   <label>Hello</label>
                 </div>
 
 
-                <!-- Modal for Sales Form -->
-                <div class="modal fade" id="addSalesModal" tabindex="-1" aria-labelledby="addSalesModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="addSalesModalLabel">Add Sales</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="" method="post" id="salesForm">
-                                    @csrf
-                                    <div class="mb-3">
-                                        <label for="productType" class="form-label">Product Type</label>
-                                        <select class="form-select" id="productType" name="productType" required>
 
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="quantity" class="form-label">Quantity</label>
-                                        <input type="number" class="form-control" id="quantity" name="quantity" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="price" class="form-label">Price</label>
-                                        <input type="text" class="form-control" id="price" name="price" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="price" class="form-label">Total</label>
-                                        <input type="text" class="form-control" id="price" name="total" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="buyerName" class="form-label">Buyer Name</label>
-                                        <input type="text" class="form-control" id="buyerName" name="buyerName" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="buyerPhone" class="form-label">Buyer Phone</label>
-                                        <input type="tel" class="form-control" id="buyerPhone" name="buyerPhone" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="saleDate" class="form-label">Sale Date</label>
-                                        <input type="date" class="form-control" id="saleDate" name="saleDate" required>
-                                    </div>
-                                    <div id="productFields">
-                                        <!-- Initial Product Type and Price Fields -->
-                                        <div class="mb-3 product-field">
-                                            <label for="productType" class="form-label">Product Type</label>
-                                            <select class="form-select productType" name="productType[]" required>
-                                                @foreach($price as $price)
-                                                    <option value="{{ $price->salesType }}">{{ $price->salesType }}</option>
-                                                @endforeach
-                                            </select>
-                                            <input type="text" class="form-control price" name="price[]" required>
-                                        </div>
-                                    </div>
-                                    <!-- Add New Product Type Button -->
-                                    <button type="button" class="btn btn-success" id="addProductType">Add Product Type</button>
-
-
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </form>
-
-                                <script>
-                                    // jQuery script to update the price input field on select change
-                                    $(document).ready(function() {
-                                        $('#productType').on('change', function() {
-                                            var selectedPrice = $(this).find(':selected').data('price');
-                                            $('#price').val(selectedPrice);
-                                        });
-                                    });
-                                </script>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <!-- Poultry Products Sales End -->
 
 
 
