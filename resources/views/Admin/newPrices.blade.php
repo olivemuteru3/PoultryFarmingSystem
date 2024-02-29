@@ -150,7 +150,7 @@
 
         <!-- Modal price Form -->
         <div class="modal fade" id="addSalesModal" tabindex="-1" aria-labelledby="addSalesModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="addSalesModalLabel">Add Sales</h5>
@@ -167,7 +167,7 @@
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="price" class="form-label">Price</label>
+                                <label for="price" class="form-label">Price per item</label>
                                 <input type="number" class="form-control" id="price" name="price" required>
                             </div>
 
