@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Chicken;
 use App\Models\Egg;
+use App\Models\Price;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -72,6 +73,18 @@ class OperationController extends Controller
             // Log the exception or handle it accordingly
             return response()->json(['error' => $e->getMessage()], 500);
         }
+
+    }
+
+
+    public function newPrice()
+    {
+        $price = new Price();
+
+        $price->salesType=$request->salesType;
+        $price->price=$request->price;
+        $price->date=now();
+
 
     }
 }
