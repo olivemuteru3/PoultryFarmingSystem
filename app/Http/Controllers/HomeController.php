@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Chicken;
 use App\Models\Egg;
+use App\Models\Price;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -153,6 +154,7 @@ class HomeController extends Controller
         $Count=Chicken::sum('number');
         $eggs=Egg::sum('eggs_number');
         $eggsRecord=Egg::all();
+        $price=Price::all();
 
         // Convert today's date to the format "d M Y"
         $todayFormatted = Carbon::today()->format('d M Y');
@@ -160,7 +162,7 @@ class HomeController extends Controller
         // Find the eggs laid today based on the formatted date
         $todaysEggs = Egg::where('date', 'LIKE', $todayFormatted . '%')->sum('eggs_number');
 
-        return view('Admin.newPrices', compact('chicken', 'Count', 'eggs', 'eggsRecord', 'todaysEggs'));
+        return view('Admin.newPrices', compact('chicken', 'Count', 'eggs', 'eggsRecord', 'todaysEggs', 'price'));
 
     }
 }

@@ -130,12 +130,12 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($chicken as $chickens)
+                        @foreach($price as $chickens)
                             <tr>
                                 <td>{{$chickens->id}}</td>
-                                <td>{{$chickens->date}}</td>
-                                <td>{{$chickens->number}}</td>
-                                <td>{{ $chickens->farmerName }}</td>
+                                <td>{{$chickens->salesType}}</td>
+                                <td>{{$chickens->price}}</td>
+                                <td>{{ $chickens->date }}</td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -157,11 +157,11 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="" method="post">
+                        <form action="{{route('newPrice')}}" method="post">
                             @csrf
                             <div class="mb-3">
                                 <label for="saleType" class="form-label">Type</label>
-                                <select class="form-select" id="saleType" name="saleType" required>
+                                <select class="form-select" id="salesType" name="salesType" required>
                                     <option value="eggs">Eggs</option>
                                     <option value="chickens">Chickens</option>
                                 </select>

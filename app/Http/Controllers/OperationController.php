@@ -90,9 +90,13 @@ class OperationController extends Controller
 
             $price->salesType=$request->salesType;
             $price->price=$request->price;
-            $price->date=now();
+            $price->date=now()->format('d-m-Y');
 
-            return response()->json($price);
+            $price->save();
+
+            //return response()->json($price);
+
+            return  redirect()->back()->with('success', 'price entered successfully');
         }
         catch  (\Exception $e) {
             // Log the exception or handle it accordingly

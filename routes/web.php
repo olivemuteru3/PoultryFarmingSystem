@@ -40,3 +40,4 @@ Route::get('/prices', [App\Http\Controllers\HomeController::class, 'prices'])->n
 Route::post('/RegisteringChickens',[App\Http\Controllers\OperationController::class, 'RegisterChickens'])->name('RegisteringChickens');
 
 Route::post('/RegisterEggs',[App\Http\Controllers\OperationController::class, 'RegisterEggs'])->name('RegisterEggs');
+Route::post('/newPrice', [App\Http\Controllers\OperationController::class, 'newPrice'])->name('newPrice');
