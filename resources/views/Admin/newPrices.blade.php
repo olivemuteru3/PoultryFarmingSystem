@@ -148,6 +148,40 @@
 
 
 
+        <!-- Modal price Form -->
+        <div class="modal fade" id="addSalesModal" tabindex="-1" aria-labelledby="addSalesModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addSalesModalLabel">Add Sales</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" method="post">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="saleType" class="form-label">Type</label>
+                                <select class="form-select" id="saleType" name="saleType" required>
+                                    <option value="eggs">Eggs</option>
+                                    <option value="chickens">Chickens</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="price" class="form-label">Price</label>
+                                <input type="number" class="form-control" id="price" name="price" required>
+                            </div>
+
+
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+
 
 
 
