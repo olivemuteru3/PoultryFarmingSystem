@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chick;
 use App\Models\Chicken;
 use App\Models\Egg;
 use App\Models\Price;
@@ -185,6 +186,41 @@ class OperationController extends Controller
 
         // Return the PDF as a response
         return $pdf->download('invoice' . $production->id . '.pdf');
+    }
+
+
+    public function chicks(Request $request)
+    {
+        try {
+            $request->validate([
+                'chick_number' => 'required|integer',
+                'comments' => 'required|string',
+            ]);
+
+            $chicken=new Chick();
+
+            $farmer=auth()->user();
+
+            $chicken->farmerName=$farmer->name;
+            $chicken->farmerPhone=$farmer->phone;
+            $chicken->number=$request->chick_number;
+            $chicken->date= Carbon::now()->format('d M Y');
+            $chicken->comments=$request->comments;
+
+            return response()->json($chicken);
+           // $chicken->save();
+
+            Toastr::success('New chickens registered successfully', 'success',["positionClass" => "toast-bottom-right"]);
+            return redirect()->back()->with('success', 'chicken registered successfully');
+
+        } catch (\Exception $e) {
+            // Log the exception or handle it accordingly
+
+            Toastr::error($e->getMessage(), 'error',["positionClass" => "toast-bottom-right"]);
+           // return response()->json(['error' => $e->getMessage()], 500);
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+
     }
 
 

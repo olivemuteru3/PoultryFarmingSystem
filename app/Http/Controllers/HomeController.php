@@ -200,4 +200,24 @@ class HomeController extends Controller
         $todaysEggs = Egg::where('date', 'LIKE', $todayFormatted . '%')->sum('eggs_number');
         return view('Admin.newSales', compact('chicken', 'Count', 'eggs', 'eggsRecord', 'todaysEggs', 'price', 'totalSales'));
     }
+
+
+    public function news()
+    {
+        $chicken=Chicken::all();
+        $Count=Chicken::sum('number');
+        $eggs=Egg::sum('eggs_number');
+        $eggsRecord=Egg::all();
+        $price=Price::all();
+        $totalSales=Sales::sum('total');
+        $sales = Sales::orderBy('created_at', 'desc')->get();
+
+        // Convert today's date to the format "d M Y"
+        $todayFormatted = Carbon::today()->format('d M Y');
+
+        // Find the eggs laid today based on the formatted date
+        $todaysEggs = Egg::where('date', 'LIKE', $todayFormatted . '%')->sum('eggs_number');
+        return view('Admin.news', compact('chicken', 'Count', 'eggs', 'eggsRecord', 'todaysEggs', 'price', 'totalSales', 'sales'));
+
+    }
 }
