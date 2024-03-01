@@ -165,6 +165,29 @@ class OperationController extends Controller
         //return redirect()->back()->with($pdf);
     }
 
+    public function generateReceiptPdf(Request $request)
+    {
+        $production = Sales::find($request->id);
+
+        // Check if the record exists
+        if (!$production) {
+            Toastr::error('Error: Record not found', 'Error', ["positionClass" => "toast-bottom-right"]);
+            return redirect()->back();
+        }
+
+        // Pass data to the view
+        $data = [
+            'sales' => $production,
+        ];
+
+        // Generate PDF from the view
+        $pdf = PDF::loadView('Admin.receipt', $data);
+
+        // Return the PDF as a response
+        return $pdf->download('invoice' . $production->id . '.pdf');
+    }
+
+
 
 
 }

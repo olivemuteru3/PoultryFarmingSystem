@@ -185,6 +185,113 @@
             </div>
         </div>
 
+        <!-- Include Chart.js library -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <!-- Chart Start -->
+        <div class="container-fluid pt-4 px-4">
+            <div class="row g-4">
+                <div class="col-sm-12 col-xl-6">
+                    <div class="bg-secondary rounded h-100 p-4">
+                        <h6 class="mb-4">Daily Eggs entry</h6>
+                        <canvas id="eggsData"></canvas>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xl-6">
+                    <div class="bg-secondary rounded h-100 p-4">
+                        <h6 class="mb-4">Chicken Data entry</h6>
+                        <canvas id="chickenData"></canvas>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xl-6">
+                    <div class="bg-secondary rounded h-100 p-4">
+                        <h6 class="mb-4">Chicken Sales</h6>
+                        <canvas id="barChartChickenSales"></canvas>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xl-6">
+                    <div class="bg-secondary rounded h-100 p-4">
+                        <h6 class="mb-4">Eggs Sales</h6>
+                        <canvas id="barChartEggsSales"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Chart End -->
+
+        <script>
+            // Sample data (replace with your actual data)
+            var eggsData = {
+                labels: ["Day 1", "Day 2", "Day 3"],
+                datasets: [{
+                    label: 'Eggs Entries',
+                    data: [50, 30, 40],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            };
+
+            var chickenData = {
+                labels: ["Day 1", "Day 2", "Day 3"],
+                datasets: [{
+                    label: 'Chicken Entries',
+                    data: [20, 40, 30],
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            };
+
+            var barChartChickenSales = {
+                labels: ["Product 1", "Product 2", "Product 3"],
+                datasets: [{
+                    label: 'Chicken Sales',
+                    data: [100, 150, 120],
+                    backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                    borderColor: 'rgba(255, 206, 86, 1)',
+                    borderWidth: 1
+                }]
+            };
+
+            var barChartEggsSales = {
+                labels: ["Product A", "Product B", "Product C"],
+                datasets: [{
+                    label: 'Eggs Sales',
+                    data: [80, 120, 90],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            };
+
+            // Create charts
+            var ctxEggs = document.getElementById('eggsData').getContext('2d');
+            new Chart(ctxEggs, {
+                type: 'line',
+                data: eggsData
+            });
+
+            var ctxChicken = document.getElementById('chickenData').getContext('2d');
+            new Chart(ctxChicken, {
+                type: 'line',
+                data: chickenData
+            });
+
+            var ctxBarChickenSales = document.getElementById('barChartChickenSales').getContext('2d');
+            new Chart(ctxBarChickenSales, {
+                type: 'bar',
+                data: barChartChickenSales
+            });
+
+            var ctxBarEggsSales = document.getElementById('barChartEggsSales').getContext('2d');
+            new Chart(ctxBarEggsSales, {
+                type: 'bar',
+                data: barChartEggsSales
+            });
+        </script>
+
+
 
 
 

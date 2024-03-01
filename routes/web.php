@@ -44,3 +44,5 @@ Route::post('/RegisterEggs',[App\Http\Controllers\OperationController::class, 'R
 Route::post('/newPrice', [App\Http\Controllers\OperationController::class, 'newPrice'])->name('newPrice');
 
 Route::post('/salesProducts', [App\Http\Controllers\OperationController::class, 'sales'])->name('sales');
+
+Route::get('/generateReceiptPdf/{id}', [\App\Http\Controllers\OperationController::class, 'generateReceiptPdf'])->name('generateReceiptPdf');

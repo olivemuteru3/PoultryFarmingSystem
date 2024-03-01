@@ -7,6 +7,19 @@
     <!-- Add this in your HTML head section -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <style>
+        #myInput {
+            background-image: url('https://cdn.dribbble.com/users/891352/screenshots/2651893/media/5ee1d7a165e16c19170de70532424186.gif');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+    </style>
+
 
     <!-- Sidebar Start -->
     <div class="sidebar pe-4 pb-3">
@@ -130,8 +143,12 @@
 
 
 
+                <div class="mb-3">
+                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+                </div>
+
                 <div class="table-responsive">
-                    <table class="table text-start align-middle table-bordered table-hover mb-0">
+                    <table class="table text-start align-middle table-bordered table-hover mb-0" id="myTable">
                         <thead class="text-white">
                         <tr>
                             <th scope="col">#</th>
@@ -145,7 +162,7 @@
                         </thead>
                         <tbody>
                         {{-- Add your sales data dynamically --}}
-                         @foreach($sales as $sale)
+                        @foreach($sales as $sale)
                             <tr>
                                 <td>{{$sale->id}}</td>
                                 <td>{{$sale->salesType}}</td>
@@ -154,7 +171,7 @@
                                 <td>{{$sale->total}}</td>
                                 <td>{{$sale->buyerPhone}}</td>
                                 <td>
-                                    <a href="" class="btn btn-sm btn-primary">
+                                    <a href="{{route('generateReceiptPdf', ['id'=>$sale->id])}}" class="btn btn-sm btn-primary">
                                         <i class="fa fa-print"></i>
                                     </a>
                                 </td>
@@ -163,6 +180,7 @@
                         </tbody>
                     </table>
                 </div>
+
 
 
                 <!-- Modal for Sales Form -->
@@ -230,6 +248,46 @@
             </div>
         </div>
         <!-- Poultry Products Sales End -->
+
+        <script>
+            function myFunction() {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("myTable");
+                tr = table.getElementsByTagName("tr");
+
+                for (i = 0; i < tr.length; i++) {
+                    var display = "none";  // Set the default display to "none"
+
+                    // Exclude the table head from search
+                    if (tr[i].getElementsByTagName("th").length > 0) {
+                        tr[i].style.display = "";
+                        continue;  // Skip to the next iteration if it's the table head
+                    }
+
+                    // Loop through the columns (0 to 5)
+                    for (var j = 0; j < 6; j++) {
+                        td = tr[i].getElementsByTagName("td")[j];
+
+                        if (td) {
+                            txtValue = td.textContent || td.innerText;
+
+                            // If any of the columns match the search criteria, set display to "table-row"
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                display = "table-row";
+                                break;  // Break the inner loop if a match is found in any column
+                            }
+                        }
+                    }
+
+                    tr[i].style.display = display;
+                }
+            }
+        </script>
+
+
+
 
 
 
