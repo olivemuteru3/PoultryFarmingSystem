@@ -19,23 +19,24 @@ class OperationController extends Controller
     {
         try {
             $request->validate([
-                'farmerName' => 'required|string',
-                'farmerPhone' => 'required|string',
                 'chicken_number' => 'required|integer',
-                'date' => 'required|date',
                 'comments' => 'required|string',
             ]);
 
             $chicken=new Chicken();
 
-            $chicken->farmerName=$request->farmerName;
-            $chicken->farmerPhone=$request->farmerPhone;
+            $farmer=auth()->user();
+
+            $chicken->farmerName=$farmer->name;
+            $chicken->farmerPhone=$farmer->phone;
             $chicken->number=$request->chicken_number;
-            $chicken->date=$request->date;
+            $chicken->date= Carbon::now()->format('d M Y');
             $chicken->comments=$request->comments;
 
             //return response()->json($chicken);
             $chicken->save();
+
+            Toastr::success('New chickens registered successfully', 'success',["positionClass" => "toast-bottom-right"]);
             return redirect()->back()->with('success', 'chicken registered successfully');
 
         } catch (\Exception $e) {
@@ -71,6 +72,8 @@ class OperationController extends Controller
            // return response()->json($eggs);
             $eggs->save();
 
+            Toastr::success('New eggs registered successfully', 'success',["positionClass" => "toast-bottom-right"]);
+
             return redirect()->back()->with('success', 'eggs registered successfully');
 
         }catch (\Exception $e) {
@@ -98,6 +101,9 @@ class OperationController extends Controller
             $price->save();
 
             //return response()->json($price);
+
+
+            Toastr::success('new price for this product registered successfully', 'success',["positionClass" => "toast-bottom-right"]);
 
             return  redirect()->back()->with('success', 'price entered successfully');
         }

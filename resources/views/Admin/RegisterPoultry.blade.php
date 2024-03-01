@@ -102,8 +102,8 @@
                     <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                         <i class="fas fa-dollar-sign fa-3x text-success"></i>
                         <div class="ms-3">
-                            <p class="mb-2">Total Revenue from Eggs</p>
-                            <h6 class="mb-0">$150,000</h6>
+                            <p class="mb-2">Total Revenue</p>
+                            <h6 class="mb-0">Ksh. {{$totalSales}}</h6>
                         </div>
                     </div>
                 </div>
@@ -166,16 +166,6 @@
                             @csrf
 
                             <div class="mb-3">
-                                <label for="name" class="form-label">{{ __('Name') }}</label>
-                                <input id="name" type="text" class="form-control" name="farmerName" value="{{ auth()->user()->name }}" readonly>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="contact_number" class="form-label">{{ __('Contact Number') }}</label>
-                                <input id="contact_number" type="text" class="form-control" name="farmerPhone" value="{{ auth()->user()->phone }}" readonly>
-                            </div>
-
-                            <div class="mb-3">
                                 <label for="num_chickens" class="form-label">{{ __('Number of Chickens') }}</label>
                                 <input id="num_chickens" type="number" class="form-control @error('chicken_number') is-invalid @enderror" name="chicken_number" required>
                                 @error('chicken_number')
@@ -183,13 +173,7 @@
                                 @enderror
                             </div>
 
-                            <div class="mb-3">
-                                <label for="date" class="form-label">{{ __('Date') }}</label>
-                                <input id="date" type="date" class="form-control" name="date" readonly>
-                            </div>
-                            <script>
-                                document.getElementById('date').valueAsDate = new Date();
-                            </script>
+
 
                             <div class="mb-3">
                                 <label for="comments" class="form-label">{{ __('Comments') }}</label>

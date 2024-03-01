@@ -143,10 +143,11 @@ class HomeController extends Controller
         $sales = Sales::orderBy('created_at', 'desc')->get();
         // Convert today's date to the format "d M Y"
         $todayFormatted = Carbon::today()->format('d M Y');
+        $totalSales=Sales::sum('total');
 
         // Find the eggs laid today based on the formatted date
         $todaysEggs = Egg::where('date', 'LIKE', $todayFormatted . '%')->sum('eggs_number');
-        return view('Admin.sales', compact('Count', 'eggs', 'eggsCount', 'todaysEggs', 'price', 'sales'));
+        return view('Admin.sales', compact('Count', 'eggs', 'eggsCount', 'todaysEggs', 'price', 'sales', 'totalSales'));
 
     }
 

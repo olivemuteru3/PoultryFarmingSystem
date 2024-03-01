@@ -106,8 +106,8 @@
                     <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                         <i class="fas fa-dollar-sign fa-3x text-success"></i>
                         <div class="ms-3">
-                            <p class="mb-2">Total Revenue from Eggs</p>
-                            <h6 class="mb-0">$150,000</h6>
+                            <p class="mb-2">Total Revenue</p>
+                            <h6 class="mb-0">Ksh. {{$totalSales}}</h6>
                         </div>
                     </div>
                 </div>
@@ -136,7 +136,10 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Type</th>
+                            <th scope="col">Quantity</th>
                             <th scope="col">Price</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">BuyersPhone</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
@@ -146,8 +149,15 @@
                             <tr>
                                 <td>{{$sale->id}}</td>
                                 <td>{{$sale->salesType}}</td>
+                                <td>{{$sale->quantity}}</td>
                                 <td>{{$sale->price}}</td>
-                                <td><a href="" class="btn btn-info btn-sm"><i class="fa fa-print"></i> Download</a></td>
+                                <td>{{$sale->total}}</td>
+                                <td>{{$sale->buyerPhone}}</td>
+                                <td>
+                                    <a href="" class="btn btn-sm btn-primary">
+                                        <i class="fa fa-print"></i>
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
