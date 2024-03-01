@@ -194,7 +194,7 @@
                 <div class="col-sm-12 col-xl-6">
                     <div class="bg-secondary rounded h-100 p-4">
                         <h6 class="mb-4">Daily Eggs entry</h6>
-                        <canvas id="eggsData"></canvas>
+                        <canvas id="eggData"></canvas>
                     </div>
                 </div>
                 <div class="col-sm-12 col-xl-6">
@@ -211,85 +211,185 @@
                 </div>
                 <div class="col-sm-12 col-xl-6">
                     <div class="bg-secondary rounded h-100 p-4">
-                        <h6 class="mb-4">Eggs Sales</h6>
-                        <canvas id="barChartEggsSales"></canvas>
+                        <h6 class="mb-4">Sales</h6>
+                        <div style="height: 300px; width: 100%;">
+                            <canvas id="pieChartSales"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
+
+
         </div>
         <!-- Chart End -->
 
         <script>
-            // Sample data (replace with your actual data)
-            var eggsData = {
-                labels: ["Day 1", "Day 2", "Day 3"],
-                datasets: [{
-                    label: 'Eggs Entries',
-                    data: [50, 30, 40],
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                }]
-            };
 
-            var chickenData = {
-                labels: ["Day 1", "Day 2", "Day 3"],
-                datasets: [{
-                    label: 'Chicken Entries',
-                    data: [20, 40, 30],
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1
-                }]
-            };
 
-            var barChartChickenSales = {
-                labels: ["Product 1", "Product 2", "Product 3"],
-                datasets: [{
-                    label: 'Chicken Sales',
-                    data: [100, 150, 120],
-                    backgroundColor: 'rgba(255, 206, 86, 0.2)',
-                    borderColor: 'rgba(255, 206, 86, 1)',
-                    borderWidth: 1
-                }]
-            };
+            // Fetch chicken data from your backend (replace with your actual data)
+            var chickenData = <?php echo json_encode($chicken); ?>;
 
-            var barChartEggsSales = {
-                labels: ["Product A", "Product B", "Product C"],
-                datasets: [{
-                    label: 'Eggs Sales',
-                    data: [80, 120, 90],
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                }]
-            };
+            // Extract IDs and Numbers from the chickenData
+            var chickenIDs = chickenData.map(chicken => chicken.id);
+            var chickenNumbers = chickenData.map(chicken => chicken.number);
 
-            // Create charts
-            var ctxEggs = document.getElementById('eggsData').getContext('2d');
-            new Chart(ctxEggs, {
-                type: 'line',
-                data: eggsData
-            });
-
+            // Create a bar chart for Chicken Data
             var ctxChicken = document.getElementById('chickenData').getContext('2d');
             new Chart(ctxChicken, {
-                type: 'line',
-                data: chickenData
+                type: 'bar',
+                data: {
+                    labels: chickenIDs,
+                    datasets: [{
+                        label: 'Number of Chickens',
+                        data: chickenNumbers,
+                        backgroundColor: [
+                            'rgb(79,122,6)',
+                            'rgb(152,78,78)',
+                            'rgb(147,135,135)',
+                            'rgb(40,113,185)',
+                            'rgb(178,19,19)',
+                            'rgb(190,129,127)',
+                            'rgb(105,97,97)',
+                            'rgb(222,215,219)',
+                            'rgb(238,42,42)',
+                            'rgb(77,6,6)',
+                            // Add more colors if needed
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            // Add more colors if needed
+                        ],
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            type: 'category', // Change the x-axis scale type to category
+                            position: 'bottom',
+                            title: {
+                                display: true,
+                                text: 'Chicken ID'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Number of Chickens'
+                            }
+                        }
+                    }
+                }
             });
 
-            var ctxBarChickenSales = document.getElementById('barChartChickenSales').getContext('2d');
-            new Chart(ctxBarChickenSales, {
-                type: 'bar',
-                data: barChartChickenSales
-            });
 
-            var ctxBarEggsSales = document.getElementById('barChartEggsSales').getContext('2d');
-            new Chart(ctxBarEggsSales, {
+        </script>
+
+    <!-- eggs -->
+        <script>
+            // Fetch egg data from your backend (replace with your actual data)
+            var eggData = <?php echo json_encode($eggsRecord); ?>;
+
+            // Extract IDs and Numbers from the eggData
+            var eggIDs = eggData.map(egg => egg.id);
+            var eggNumbers = eggData.map(egg => egg.eggs_number);
+
+            // Create a line chart for Egg Data
+            var ctxEgg = document.getElementById('eggData').getContext('2d');
+            new Chart(ctxEgg, {
                 type: 'bar',
-                data: barChartEggsSales
+                data: {
+                    labels: eggIDs,
+                    datasets: [{
+                        label: 'Number of Eggs',
+                        data: eggNumbers,
+                        backgroundColor: [
+                            'rgb(232,18,12)',
+                            'rgb(67,150,234)',
+                            'rgb(79,122,6)',
+                            'rgb(152,78,78)',
+                            'rgb(147,135,135)',
+                            'rgb(40,113,185)',
+                            'rgb(178,19,19)',
+                            'rgb(190,129,127)',
+                            'rgb(105,97,97)',
+                            'rgb(222,215,219)',
+                            // Add more colors if needed
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            // Add more colors if needed
+                        ],
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            type: 'category',
+                            position: 'bottom',
+                            title: {
+                                display: true,
+                                text: 'Egg ID'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Number of Eggs'
+                            }
+                        }
+                    }
+                }
             });
         </script>
+
+
+
+
+{{--        <script>--}}
+{{--            var distinctSalesTypes = <?php echo json_encode($distinctSalesTypes); ?>;--}}
+
+{{--            // Log the distinct sales types to the console--}}
+{{--            console.log(distinctSalesTypes);--}}
+{{--        </script>--}}
+
+
+        <script>
+            var salesData = @json($distinctSalesTypes);
+
+            // Extract sales types and quantities from the data
+            var salesTypes = salesData.map(sale => sale.salesType);
+            var quantities = salesData.map(sale => sale.totalQuantity);
+
+            var ctx = document.getElementById('pieChartSales').getContext('2d');
+            var pieChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: salesTypes,
+                    datasets: [{
+                        label: 'Sales',
+                        data: quantities,
+                        backgroundColor: [
+                            'rgba(56,204,14,0.2)',
+                            'rgba(245,243,243,0.2)',
+                            // Add more colors if needed
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            // Add more colors if needed
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        </script>
+
 
 
 

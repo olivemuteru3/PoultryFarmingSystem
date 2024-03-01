@@ -33,23 +33,30 @@ class HomeController extends Controller
                 $eggsRecord=Egg::all();
                 $totalSales=Sales::sum('total');
 
+                // Get the start and end date for the past week
+
+
 
                 // Convert today's date to the format "d M Y"
                 $todayFormatted = Carbon::today()->format('d M Y');
 
                 // Find the eggs laid today based on the formatted date
                 $todaysEggs = Egg::where('date', 'LIKE', $todayFormatted . '%')->sum('eggs_number');
+                $distinctSalesTypes = Sales::select('salesType', \DB::raw('SUM(quantity) as totalQuantity'))
+                    ->groupBy('salesType')
+                    ->get();
 
                 //$todaysEggs = Egg::whereDate('date', '=', Carbon::createFromFormat('d M Y', Carbon::today()->format('d M Y')))->sum('eggs_number');
 
 
                 //return response()->json($chicken);
 
-                return view('Admin.index', compact('chicken', 'Count', 'eggs', 'eggsRecord', 'todaysEggs', 'totalSales'));
+                return view('Admin.index', compact('chicken', 'Count', 'eggs', 'eggsRecord', 'todaysEggs', 'distinctSalesTypes', 'totalSales'));
             } else if ($usertype === 'admin') {
+                $salesOfEggs = [];
 
 
-                return view('Admin.index');
+                return view('Admin.index', compact('salesOfEggs'));
             }
         } else {
             return view('auth.login');
