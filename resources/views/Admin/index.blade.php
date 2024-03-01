@@ -205,8 +205,11 @@
                 </div>
                 <div class="col-sm-12 col-xl-6">
                     <div class="bg-secondary rounded h-100 p-4">
-                        <h6 class="mb-4">Chicken Sales</h6>
-                        <canvas id="barChartChickenSales"></canvas>
+                        <h6 class="mb-4">Comparison</h6>
+                        <div style="height: 300px; width: 100%;">
+                            <canvas id="pieChartComparison"></canvas>
+                        </div>
+
                     </div>
                 </div>
                 <div class="col-sm-12 col-xl-6">
@@ -379,6 +382,37 @@
                             'rgba(255, 99, 132, 1)',
                             'rgba(54, 162, 235, 1)',
                             // Add more colors if needed
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        </script>
+
+
+        <script>
+            // Assuming you have already fetched the count of chickens and eggs
+            var chickenCount = <?php echo $Count; ?>;
+            var eggsCount = <?php echo $eggs; ?>;
+
+            var ctx = document.getElementById('pieChartComparison').getContext('2d');
+            var pieChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Chickens', 'Eggs'],
+                    datasets: [{
+                        data: [chickenCount, eggsCount],
+                        backgroundColor: [
+                            'rgb(206,65,58)',
+                            'rgba(207,223,232,0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
                         ],
                         borderWidth: 1
                     }]

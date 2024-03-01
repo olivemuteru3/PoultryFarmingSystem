@@ -117,7 +117,7 @@
             <div class="bg-secondary text-center rounded p-4">
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <h6 class="mb-0 text-light">Eggs Record</h6>
-                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEggsModal">Add New</a>
+
                 </div>
 
                 <!-- Individual Egg Entry Start -->
