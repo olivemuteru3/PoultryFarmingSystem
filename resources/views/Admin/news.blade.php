@@ -42,7 +42,8 @@
                 <a href="/user/profile" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Profile</a>
                 <a href="/RegisterPoultry" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Chickens</a>
                 <a href="/eggs" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Eggs</a>
-                <a href="/sales" class="nav-item nav-link active"><i class="fa fa-keyboard me-2"></i>Sales</a>
+                <a href="/sales" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Sales</a>
+                <a href="/news" class="nav-item nav-link active"><i class="fa fa-list-alt"></i>Others</a>
 
             </div>
         </nav>
@@ -259,7 +260,7 @@
                     </div>
                     <div class="modal-body">
                         <!-- Add your form for adding new eggs here -->
-                        <form method="POST" action="">
+                        <form method="POST" action="{{route('chicks')}}">
                             @csrf
 
                             <div class="mb-3">
@@ -289,6 +290,19 @@
             </div>
         </div>
         <!-- Add Eggs Modal End -->
+
+        <!-- Poultry Products Sales -->
+        <div class="container-fluid pt-4 px-4">
+            <div class="bg-secondary text-center rounded p-4">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h6 class="mb-0">Poultry Products Sales</h6>
+
+                    <div style="width: 50%;">
+                        <canvas id="pieChartChicks"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <script>
             function myFunction() {
@@ -325,6 +339,66 @@
                     tr[i].style.display = display;
                 }
             }
+        </script>
+
+        <script>
+            // Assuming you have fetched the data from your PHP variable $chicks
+            var chicksData = <?php echo json_encode($chicks); ?>;
+
+            // Get the current date and calculate the dates for the past week, 2 weeks ago, and 3 months ago
+            var currentDate = new Date();
+            var pastWeekDate = new Date();
+            pastWeekDate.setDate(currentDate.getDate() - 7);
+
+            var twoWeeksAgoDate = new Date();
+            twoWeeksAgoDate.setDate(currentDate.getDate() - 14);
+
+            var threeMonthsAgoDate = new Date();
+            threeMonthsAgoDate.setMonth(currentDate.getMonth() - 3);
+
+            // Group the chicks data based on the creation date
+            var pastWeekCount = 0;
+            var twoWeeksToThreeMonthsCount = 0;
+            var othersCount = 0;
+
+            chicksData.forEach(function(chick) {
+                var chickDate = new Date(chick.created_at);
+
+                if (chickDate >= pastWeekDate) {
+                    pastWeekCount++;
+                } else if (chickDate >= twoWeeksAgoDate && chickDate < threeMonthsAgoDate) {
+                    twoWeeksToThreeMonthsCount++;
+                } else {
+                    othersCount++;
+                }
+            });
+
+            // Create the pie chart
+            var ctx = document.getElementById('pieChartChicks').getContext('2d');
+            var pieChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Past Week', '2 Weeks to 3 Months', 'Others'],
+                    datasets: [{
+                        data: [pastWeekCount, twoWeeksToThreeMonthsCount, othersCount],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
         </script>
 
 

@@ -203,14 +203,14 @@ class OperationController extends Controller
 
             $chicken->farmerName=$farmer->name;
             $chicken->farmerPhone=$farmer->phone;
-            $chicken->number=$request->chick_number;
+            $chicken->chick_number=$request->chick_number;
             $chicken->date= Carbon::now()->format('d M Y');
             $chicken->comments=$request->comments;
 
-            return response()->json($chicken);
-           // $chicken->save();
+            //return response()->json($chicken);
+            $chicken->save();
 
-            Toastr::success('New chickens registered successfully', 'success',["positionClass" => "toast-bottom-right"]);
+            Toastr::success('New young chicks registered successfully', 'success',["positionClass" => "toast-bottom-right"]);
             return redirect()->back()->with('success', 'chicken registered successfully');
 
         } catch (\Exception $e) {

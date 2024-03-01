@@ -47,3 +47,5 @@ Route::post('/newPrice', [App\Http\Controllers\OperationController::class, 'newP
 Route::post('/salesProducts', [App\Http\Controllers\OperationController::class, 'sales'])->name('sales');
 
 Route::get('/generateReceiptPdf/{id}', [\App\Http\Controllers\OperationController::class, 'generateReceiptPdf'])->name('generateReceiptPdf');
+
+Route::post('/chicks', [App\Http\Controllers\OperationController::class, 'chicks'])->name('chicks');
