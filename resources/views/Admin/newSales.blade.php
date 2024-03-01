@@ -26,7 +26,7 @@
             <div class="navbar-nav w-100">
                 <a href="/dashboard" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                 <a href="/user/profile" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Profile</a>
-                <a href="/RegisterPoultry" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Register</a>
+                <a href="/RegisterPoultry" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Chickens</a>
                 <a href="/eggs" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Eggs</a>
                 <a href="/sales" class="nav-item nav-link active"><i class="fa fa-keyboard me-2"></i>Sales</a>
 
@@ -79,7 +79,7 @@
                         <i class="fas fa-egg fa-3x text-warning"></i>
                         <div class="ms-3">
                             <p class="mb-2">Eggs Laid Today</p>
-                            <h6 class="mb-0">5000</h6>
+                            <h6 class="mb-0">{{$todaysEggs}}</h6>
                         </div>
                     </div>
                 </div>
@@ -96,8 +96,8 @@
                     <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                         <i class="fas fa-dollar-sign fa-3x text-success"></i>
                         <div class="ms-3">
-                            <p class="mb-2">Today Revenue from Eggs</p>
-                            <h6 class="mb-0">$5000</h6>
+                            <p class="mb-2">Total Eggs</p>
+                            <h6 class="mb-0">{{$eggs}}</h6>
                         </div>
                     </div>
                 </div>
@@ -124,14 +124,15 @@
 
                 <!-- Sales Entry Form -->
                 <!-- Sales Entry Form -->
-                <form action="" method="post">
+                <form action="{{ route('sales') }}" method="post" id="salesForm">
                     @csrf
                     <div class="row g-3">
                         <div class="col-md-6">
                             <!-- Sales Type -->
                             <div class="mb-3">
                                 <label for="productType" class="form-label">Sales Type</label>
-                                <select class="form-select" id="productType" name="productType" required>
+                                <select class="form-select" id="productType" name="salesType" required>
+                                    <option selected disabled>--select--</option>
                                     @foreach($price as $price)
                                         <option value="{{ $price->salesType }}" data-price="{{ $price->price }}">{{ $price->salesType }}</option>
                                     @endforeach
@@ -196,6 +197,31 @@
                         document.getElementById('total').value = isNaN(total) ? '' : total.toFixed(2);
                     }
                 </script>
+
+                <!-- Add this script after your previous JavaScript code -->
+                <script>
+                    function validateQuantity() {
+                        let selectedType = document.getElementById('productType');
+                        let selectedQuantity = parseFloat(document.getElementById('quantity').value);
+
+                        if (!selectedType || isNaN(selectedQuantity)) {
+                            return true; // Validation will be handled by HTML5 'required' attribute
+                        }
+
+                        let availableCount = parseFloat(selectedType.options[selectedType.selectedIndex].dataset.count);
+
+                        if (selectedQuantity > availableCount) {
+                            alert('Error: Quantity exceeds available count.');
+                            return false;
+                        }
+
+                        return true;
+                    }
+
+                    // Add the onsubmit attribute to your form
+                    document.getElementById('salesForm').onsubmit = validateQuantity;
+                </script>
+
 
 
 

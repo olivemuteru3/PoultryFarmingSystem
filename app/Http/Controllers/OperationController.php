@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Chicken;
 use App\Models\Egg;
 use App\Models\Price;
+use App\Models\Sales;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use mysql_xdevapi\Exception;
+use Brian2694\Toastr\Facades\Toastr;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class OperationController extends Controller
 {
@@ -105,4 +108,51 @@ class OperationController extends Controller
 
 
     }
+
+    public function sales(Request $request)
+    {
+        $sales = new Sales();
+        $selected = $request->salesType; // Get the selected salesType
+
+        if ($selected == 'eggs') {
+            $eggs = Egg::sum('eggs_number');
+            // Check if the quantity exceeds the available eggs count
+            if ($request->quantity > $eggs) {
+                Toastr::error('Error: Quantity exceeds available eggs count', 'Error', ["positionClass" => "toast-bottom-right"]);
+                return redirect()->back()->with('error', 'Error: Quantity exceeds available eggs count.');
+            } else {
+                // Update the eggs count in the database
+                Egg::decrement('eggs_number', $request->quantity);
+            }
+        } else {
+            $chicken = Chicken::sum('number');
+            // Check if the quantity exceeds the available chicken count
+            if ($request->quantity > $chicken) {
+                Toastr::error('Error: Quantity exceeds available chicken count', 'Error',["positionClass" => "toast-bottom-right"]);
+                return redirect()->back()->with('error', 'Error: Quantity exceeds available chicken count.');
+            } else {
+                // Update the chicken count in the database
+                Chicken::decrement('number', $request->quantity);
+            }
+        }
+
+        $sales->salesType = $request->salesType;
+        $sales->price = $request->price;
+        $sales->quantity = $request->quantity;
+        $sales->total = $request->total;
+        $sales->buyerName = $request->buyerName;
+        $sales->buyerPhone = $request->buyerPhone;
+
+        // Save the sales entry
+        $sales->save();
+        Toastr::success('sales registered successfully', 'success',["positionClass" => "toast-bottom-right"]);
+
+        // Load the PDF view
+        $pdf = Pdf::loadView('pdf.invoice', ['sales' => $sales]);
+
+        // Return the PDF as a response
+        return $pdf->download('invoice.pdf');
+    }
+
+
 }

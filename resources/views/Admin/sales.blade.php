@@ -27,7 +27,7 @@
             <div class="navbar-nav w-100">
                 <a href="/dashboard" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                 <a href="/user/profile" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Profile</a>
-                <a href="/RegisterPoultry" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Register</a>
+                <a href="/RegisterPoultry" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Chickens</a>
                 <a href="/eggs" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Eggs</a>
                 <a href="/sales" class="nav-item nav-link active"><i class="fa fa-keyboard me-2"></i>Sales</a>
 
@@ -80,7 +80,7 @@
                         <i class="fas fa-egg fa-3x text-warning"></i>
                         <div class="ms-3">
                             <p class="mb-2">Eggs Laid Today</p>
-                            <h6 class="mb-0">5000</h6>
+                            <h6 class="mb-0">{{$todaysEggs}}</h6>
                         </div>
                     </div>
                 </div>
@@ -97,8 +97,8 @@
                     <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                         <i class="fas fa-dollar-sign fa-3x text-success"></i>
                         <div class="ms-3">
-                            <p class="mb-2">Today Revenue from Eggs</p>
-                            <h6 class="mb-0">$5000</h6>
+                            <p class="mb-2">Total Eggs</p>
+                            <h6 class="mb-0">{{$eggs}}</h6>
                         </div>
                     </div>
                 </div>
@@ -114,6 +114,7 @@
             </div>
         </div>
         <!-- Poultry Farming Information End -->
+
 
 
         <!-- Poultry Products Sales -->

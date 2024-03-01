@@ -42,3 +42,5 @@ Route::post('/RegisteringChickens',[App\Http\Controllers\OperationController::cl
 
 Route::post('/RegisterEggs',[App\Http\Controllers\OperationController::class, 'RegisterEggs'])->name('RegisterEggs');
 Route::post('/newPrice', [App\Http\Controllers\OperationController::class, 'newPrice'])->name('newPrice');
+
+Route::post('/salesProducts', [App\Http\Controllers\OperationController::class, 'sales'])->name('sales');

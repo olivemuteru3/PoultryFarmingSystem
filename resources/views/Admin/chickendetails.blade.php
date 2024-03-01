@@ -130,7 +130,7 @@
                     <div class="col-md-6">
                         <div class="card bg-gray-100 border-light rounded p-4">
                             <div class="card-header bg-primary text-light">
-                                <h5 class="mb-0">Egg Details</h5>
+                                <h5 class="mb-0">Chicken Details</h5>
                             </div>
                             <div class="card-body">
                                 <!-- Date -->
