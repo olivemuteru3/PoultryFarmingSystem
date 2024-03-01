@@ -90,6 +90,28 @@
         .float-right{
             float: right;
         }
+
+        table th.total,
+        table td.total {
+            background-color: #007bff;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        table td.total {
+            font-size: 18px;
+        }
+
+        .thank-you {
+            margin-top: 20px;
+            color: #007bff;
+            font-size: 18px;
+        }
+
+        .welcome {
+            color: #333;
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
@@ -163,8 +185,8 @@
             </tbody>
         </table>
         <br>
-        <h3 class="heading">Sales Status: Sold</h3>
-        <h3 class="heading">we would like to thank you for purchasing this product from us</h3>
+        <h3 class="heading">Thank you for purchasing from us!</h3>
+        <h3 class="heading">Welcome again!</h3>
     </div>
 
 

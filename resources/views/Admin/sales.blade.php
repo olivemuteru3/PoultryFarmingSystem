@@ -142,14 +142,14 @@
                         </thead>
                         <tbody>
                         {{-- Add your sales data dynamically --}}
-                        {{-- @foreach($sales as $sale)
+                         @foreach($sales as $sale)
                             <tr>
                                 <td>{{$sale->id}}</td>
-                                <td>{{$sale->type}}</td>
+                                <td>{{$sale->salesType}}</td>
                                 <td>{{$sale->price}}</td>
-                                <td><a href="#" class="btn btn-info btn-sm">Details</a></td>
+                                <td><a href="" class="btn btn-info btn-sm"><i class="fa fa-print"></i> Download</a></td>
                             </tr>
-                        @endforeach --}}
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

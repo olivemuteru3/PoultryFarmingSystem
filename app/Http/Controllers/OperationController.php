@@ -153,9 +153,12 @@ class OperationController extends Controller
         $pdf = Pdf::loadView('Admin.receipt', ['sales' => $sales]);
 
         // Return the PDF as a response
-        return $pdf->download('invoice.pdf');
+        return  $pdf->download('invoice' . $sales->id . '.pdf');
 
+        // Redirect back after downloading the PDF
+        //return redirect()->back()->with($pdf);
     }
+
 
 
 }
