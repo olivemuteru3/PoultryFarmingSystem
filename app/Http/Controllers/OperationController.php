@@ -142,16 +142,19 @@ class OperationController extends Controller
         $sales->total = $request->total;
         $sales->buyerName = $request->buyerName;
         $sales->buyerPhone = $request->buyerPhone;
+        $sales->seller=auth()->user()->name;
+        $sales->sellerPhone=auth()->user()->phone;
 
         // Save the sales entry
         $sales->save();
         Toastr::success('sales registered successfully', 'success',["positionClass" => "toast-bottom-right"]);
 
         // Load the PDF view
-        $pdf = Pdf::loadView('pdf.invoice', ['sales' => $sales]);
+        $pdf = Pdf::loadView('Admin.receipt', ['sales' => $sales]);
 
         // Return the PDF as a response
         return $pdf->download('invoice.pdf');
+
     }
 
 

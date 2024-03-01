@@ -137,7 +137,7 @@
                             <tr>
                                 <td>{{$chickens->id}}</td>
                                 <td>{{$chickens->date}}</td>
-                                <td>{{$chickens->eggs_number}}</td>
+                                <td>{{$chickens->number}}</td>
                                 <td>{{ $chickens->farmerName }}</td>
                                 <td>{{$chickens->farmerPhone}}</td>
                                 <td><span class="badge bg-success">{{$chickens->status}}</span></td>
