@@ -145,7 +145,7 @@
 
 
                 <div class="mb-3">
-                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for anything from the table.." title="Type in a name">
                 </div>
 
                 <div class="table-responsive">

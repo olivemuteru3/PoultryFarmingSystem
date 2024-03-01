@@ -6,6 +6,8 @@
 
     <!-- Add this in your HTML head section -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
     <style>
         #myInput {
@@ -145,7 +147,7 @@
 
 
                 <div class="mb-3">
-                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search anything.." title="Type in a name">
                 </div>
 
                 <div class="table-responsive">
@@ -153,29 +155,22 @@
                         <thead class="text-white">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Total</th>
-                            <th scope="col">BuyersPhone</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Chick Number</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Farmer Phone</th>
+                            <th scope="col">comments</th>
                         </tr>
                         </thead>
                         <tbody>
                         {{-- Add your sales data dynamically --}}
-                        @foreach($sales as $sale)
+                        @foreach($chicks as $sale)
                             <tr>
                                 <td>{{$sale->id}}</td>
-                                <td>{{$sale->salesType}}</td>
-                                <td>{{$sale->quantity}}</td>
-                                <td>{{$sale->price}}</td>
-                                <td>{{$sale->total}}</td>
-                                <td>{{$sale->buyerPhone}}</td>
-                                <td>
-                                    <a href="{{route('generateReceiptPdf', ['id'=>$sale->id])}}" class="btn btn-sm btn-primary">
-                                        <i class="fa fa-print"></i>
-                                    </a>
-                                </td>
+                                <td>{{$sale->chick_number}}</td>
+                                <td>{{$sale->date}}</td>
+                                <td>{{$sale->farmerPhone}}</td>
+                                <td>{{$sale->comments}}</td>
+
                             </tr>
                         @endforeach
                         </tbody>
@@ -291,18 +286,33 @@
         </div>
         <!-- Add Eggs Modal End -->
 
-        <!-- Poultry Products Sales -->
-        <div class="container-fluid pt-4 px-4">
-            <div class="bg-secondary text-center rounded p-4">
-                <div class="d-flex align-items-center justify-content-between mb-4">
-                    <h6 class="mb-0">Poultry Products Sales</h6>
 
-                    <div style="width: 50%;">
-                        <canvas id="pieChartChicks"></canvas>
+        <!-- Chart Start -->
+        <div class="container-fluid pt-4 px-4">
+            <div class="row g-4">
+
+                <div class="col-sm-12 col-xl-6">
+                    <div class="bg-secondary rounded h-100 p-4">
+                        <h6 class="mb-4">Comparison</h6>
+                        <div style="height: 300px; width: 100%;">
+                            <canvas id="pieChartChicks"></canvas>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xl-6">
+                    <div class="bg-secondary rounded h-100 p-4">
+                        <h6 class="mb-4">Sales</h6>
+                        <div style="height: 300px; width: 100%;">
+                            <canvas id="pieChartSales"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
+
+
         </div>
+        <!-- Chart End -->
 
         <script>
             function myFunction() {
@@ -340,6 +350,7 @@
                 }
             }
         </script>
+
 
         <script>
             // Assuming you have fetched the data from your PHP variable $chicks
@@ -400,6 +411,13 @@
                 }
             });
         </script>
+
+        <script>
+                var distinctSalesTypes = <?php echo json_encode($chicks); ?>;
+
+                // Log the distinct sales types to the console
+                console.log(distinctSalesTypes);
+            </script>
 
 
 
