@@ -139,7 +139,7 @@
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <h6 class="mb-0">Poultry Products Sales</h6>
                     <div class="d-flex">
-                        <a href="/newSales" class="btn btn-primary btn-sm me-2">Feeding</a>
+                        <a href="/feeding" class="btn btn-primary btn-sm me-2">Feeding</a>
                         <a href="#" data-bs-toggle="modal" data-bs-target="#addEggsModal" class="btn btn-info btn-sm">New Chicks</a>
                     </div>
                 </div>
@@ -304,7 +304,7 @@
                     <div class="bg-secondary rounded h-100 p-4">
                         <h6 class="mb-4">Sales</h6>
                         <div style="height: 300px; width: 100%;">
-                            <canvas id="pieChartSales"></canvas>
+                            <canvas id="barChartChicks"></canvas>
                         </div>
                     </div>
                 </div>
@@ -367,20 +367,21 @@
             var threeMonthsAgoDate = new Date();
             threeMonthsAgoDate.setMonth(currentDate.getMonth() - 3);
 
-            // Group the chicks data based on the creation date
+            // Initialize counts for each category
             var pastWeekCount = 0;
             var twoWeeksToThreeMonthsCount = 0;
             var othersCount = 0;
 
+            // Iterate through chicksData to categorize chick counts
             chicksData.forEach(function(chick) {
-                var chickDate = new Date(chick.created_at);
+                var chickDate = new Date(chick.date);
 
                 if (chickDate >= pastWeekDate) {
-                    pastWeekCount++;
+                    pastWeekCount += parseInt(chick.chick_number);
                 } else if (chickDate >= twoWeeksAgoDate && chickDate < threeMonthsAgoDate) {
-                    twoWeeksToThreeMonthsCount++;
+                    twoWeeksToThreeMonthsCount += parseInt(chick.chick_number);
                 } else {
-                    othersCount++;
+                    othersCount += parseInt(chick.chick_number);
                 }
             });
 
@@ -393,9 +394,9 @@
                     datasets: [{
                         data: [pastWeekCount, twoWeeksToThreeMonthsCount, othersCount],
                         backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)'
+                            'rgba(238,232,232,0.2)',
+                            'rgb(206,215,225)',
+                            'rgb(231,22,19)'
                         ],
                         borderColor: [
                             'rgba(255, 99, 132, 1)',
@@ -413,11 +414,74 @@
         </script>
 
         <script>
-                var distinctSalesTypes = <?php echo json_encode($chicks); ?>;
 
-                // Log the distinct sales types to the console
-                console.log(distinctSalesTypes);
-            </script>
+
+            // Fetch chicken data from your backend (replace with your actual data)
+            var chickenData = <?php echo json_encode($chicks); ?>;
+
+            // Extract IDs and Numbers from the chickenData
+            var chickenIDs = chickenData.map(chicken => chicken.id);
+            var chickenNumbers = chickenData.map(chicken => chicken.chick_number);
+
+            // Create a bar chart for Chicken Data
+            var ctxChicken = document.getElementById('barChartChicks').getContext('2d');
+            new Chart(ctxChicken, {
+                type: 'bar',
+                data: {
+                    labels: chickenIDs,
+                    datasets: [{
+                        label: 'Number of Young Chicks',
+                        data: chickenNumbers,
+                        backgroundColor: [
+                            'rgb(79,122,6)',
+                            'rgb(152,78,78)',
+                            'rgb(147,135,135)',
+                            'rgb(40,113,185)',
+                            'rgb(178,19,19)',
+                            'rgb(190,129,127)',
+                            'rgb(105,97,97)',
+                            'rgb(222,215,219)',
+                            'rgb(238,42,42)',
+                            'rgb(77,6,6)',
+                            // Add more colors if needed
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            // Add more colors if needed
+                        ],
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            type: 'category', // Change the x-axis scale type to category
+                            position: 'bottom',
+                            title: {
+                                display: true,
+                                text: 'Chicken ID'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Number of Chickens'
+                            }
+                        }
+                    }
+                }
+            });
+
+
+        </script>
+
+
+{{--        <script>--}}
+{{--                var distinctSalesTypes = <?php echo json_encode($chicks); ?>;--}}
+
+{{--                // Log the distinct sales types to the console--}}
+{{--                console.log(distinctSalesTypes);--}}
+{{--            </script>--}}
 
 
 

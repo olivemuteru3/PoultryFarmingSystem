@@ -7,6 +7,7 @@ use App\Models\Chicken;
 use App\Models\Egg;
 use App\Models\Price;
 use App\Models\Sales;
+use http\Env\Url;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -222,5 +223,25 @@ class HomeController extends Controller
         $todaysEggs = Egg::where('date', 'LIKE', $todayFormatted . '%')->sum('eggs_number');
         return view('Admin.news', compact('chicken', 'Count', 'eggs', 'eggsRecord', 'todaysEggs', 'price', 'totalSales', 'sales', 'chicks'));
 
+    }
+
+    public function feeding()
+    {
+        $chicken=Chicken::all();
+        $Count=Chicken::sum('number');
+        $eggs=Egg::sum('eggs_number');
+        $eggsRecord=Egg::all();
+        $price=Price::all();
+        $totalSales=Sales::sum('total');
+        $sales = Sales::orderBy('created_at', 'desc')->get();
+
+        $chicks=Chick::all();
+
+        // Convert today's date to the format "d M Y"
+        $todayFormatted = Carbon::today()->format('d M Y');
+
+        // Find the eggs laid today based on the formatted date
+        $todaysEggs = Egg::where('date', 'LIKE', $todayFormatted . '%')->sum('eggs_number');
+        return view('Admin.feeding', compact('chicken', 'Count', 'eggs', 'eggsRecord', 'todaysEggs', 'price', 'totalSales', 'sales', 'chicks'));
     }
 }
