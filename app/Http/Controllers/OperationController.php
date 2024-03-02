@@ -248,7 +248,13 @@ class OperationController extends Controller
             $feed->enteredBy=auth()->user()->name;
             $feed->cashierPhone=auth()->user()->phone;
 
-            return response()->json($feed);
+            //return response()->json($feed);
+
+            $feed->save();
+
+            Toastr::success('Chicken Feeds added successfully', 'success',["positionClass" => "toast-bottom-right"]);
+            return redirect()->back()->with('success', 'Chicken Feeds added successfully');
+
         }
         catch (\Exception $e)
         {
