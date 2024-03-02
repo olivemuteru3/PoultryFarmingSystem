@@ -246,22 +246,23 @@
                         <thead class="text-white">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Chick Number</th>
+                            <th scope="col">Feeds Name</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Supplier</th>
                             <th scope="col">Date</th>
-                            <th scope="col">Farmer Phone</th>
-                            <th scope="col">comments</th>
+                            <th scope="col">Comments</th>
                         </tr>
                         </thead>
                         <tbody>
                         {{-- Add your sales data dynamically --}}
-                        @foreach($chicks as $sale)
+                        @foreach($feed as $sale)
                             <tr>
                                 <td>{{$sale->id}}</td>
-                                <td>{{$sale->chick_number}}</td>
+                                <td>{{$sale->feedName}}</td>
+                                <td>{{$sale->quantity}}</td>
+                                <td>{{$sale->supplier}}</td>
                                 <td>{{$sale->date}}</td>
-                                <td>{{$sale->farmerPhone}}</td>
                                 <td>{{$sale->comments}}</td>
-
                             </tr>
                         @endforeach
                         </tbody>
