@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Chick;
 use App\Models\Chicken;
 use App\Models\Egg;
+use App\Models\Feed;
 use App\Models\Price;
 use App\Models\Sales;
 use Illuminate\Http\Request;
@@ -221,6 +222,40 @@ class OperationController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
 
+    }
+
+
+    public function Feeding(Request $request)
+    {
+        try {
+
+            $this->validate($request, [
+                'feedName' => 'required',
+                'quantity' => 'required|numeric',
+                'supplier' => 'required',
+                'purchaseDate' => 'required',
+                'comments' => 'nullable|string',
+            ]);
+
+
+            $feed = new Feed();
+
+            $feed->feedName=$request->feedName;
+            $feed->quantity=$request->quantity;
+            $feed->supplier=$request->supplier;
+            $feed->purchaseDate=$request->purchaseDate;
+            $feed->comments=$request->comments;
+            $feed->enteredBy=auth()->user()->name;
+            $feed->cashierPhone=auth()->user()->phone;
+
+            return response()->json($feed);
+        }
+        catch (\Exception $e)
+        {
+            Toastr::error($e->getMessage(), 'error',["positionClass" => "toast-bottom-right"]);
+            // return response()->json(['error' => $e->getMessage()], 500);
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 
 

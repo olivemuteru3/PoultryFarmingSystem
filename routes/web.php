@@ -50,3 +50,4 @@ Route::post('/salesProducts', [App\Http\Controllers\OperationController::class, 
 Route::get('/generateReceiptPdf/{id}', [\App\Http\Controllers\OperationController::class, 'generateReceiptPdf'])->name('generateReceiptPdf');
 
 Route::post('/chicks', [App\Http\Controllers\OperationController::class, 'chicks'])->name('chicks');
+Route::post('/Feeding',[App\Http\Controllers\OperationController::class, 'Feeding'])->name('Feeding');

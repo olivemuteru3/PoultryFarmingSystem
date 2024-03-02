@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('supplier');
             $table->string('purchaseDate');
             $table->text('comments');
+            $table->string('enteredBy');
+            $table->string('cashierPhone');
             $table->string('status')->default('added');
             $table->timestamps();
         });

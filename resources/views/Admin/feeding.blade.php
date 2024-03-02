@@ -148,23 +148,29 @@
                 </div>
 
                 <!-- Feeds Entry Form -->
-                <form action="" method="post" id="salesForm">
+                <form action="{{ route('Feeding') }}" method="post" id="salesForm">
                     @csrf
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label for="feedName" class="form-label">Feed Name</label>
-                            <input type="text" class="form-control" id="feedName" name="feedName" required>
+                            <input type="text" class="form-control" id="feedName" name="feedName" >
+                            @error('feedName')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col-md-6">
                             <label for="quantity" class="form-label">Quantity</label>
-                            <input type="number" class="form-control" id="quantity" name="quantity" required>
+                            <input type="number" class="form-control" id="quantity" name="quantity" >
+                            @error('quantity')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label for="supplier" class="form-label">Supplier</label>
-                            <select class="select2 form-control" id="supplier" name="supplier" required>
+                            <select class="select2 form-control" id="supplier" name="supplier" >
                                 <option selected disabled>----</option>
                                 <option value="JUBILEE FEEDS INDUSTRIES LTD">JUBILEE FEEDS INDUSTRIES LTD</option>
                                 <option value="WONDER FEEDS LIMITED">WONDER FEEDS LIMITED</option>
@@ -177,28 +183,36 @@
                                 <option value="CHICKEN BASKET">CHICKEN BASKET</option>
                                 <option value="SIGNATURE FEEDS LIMITED">SIGNATURE FEEDS LIMITED</option>
                             </select>
+                            @error('supplier')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="col-md-6">
                             <label for="purchaseDate" class="form-label">Purchase Date</label>
-                            <input type="date" class="form-control" id="purchaseDate" name="purchaseDate" required>
+                            <input type="date" class="form-control" id="purchaseDate" name="purchaseDate" >
+                            @error('purchaseDate')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
+
+                            <script>
+                                // Get today's date and format it as "YYYY-MM-DD" (compatible with the input type="date")
+                                var today = new Date();
+                                var formattedDate = today.toISOString().split('T')[0];
+
+                                // Set the formatted date as the value of the "Purchase Date" input
+                                document.getElementById('purchaseDate').value = formattedDate;
+                            </script>
                         </div>
-
-                        <script>
-                            // Get today's date and format it as "YYYY-MM-DD" (compatible with the input type="date")
-                            var today = new Date();
-                            var formattedDate = today.toISOString().split('T')[0];
-
-                            // Set the formatted date as the value of the "Purchase Date" input
-                            document.getElementById('purchaseDate').value = formattedDate;
-                        </script>
-
                     </div>
 
                     <div class="row g-3">
                         <div class="col-md-12">
                             <label for="comments" class="form-label">Comments</label>
                             <textarea class="form-control" id="comments" name="comments" rows="3"></textarea>
+                            @error('comments')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
@@ -206,6 +220,7 @@
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
+
 
 
             </div>
