@@ -261,7 +261,7 @@
                                 <td>{{$sale->feedName}}</td>
                                 <td>{{$sale->quantity}}</td>
                                 <td>{{$sale->supplier}}</td>
-                                <td>{{$sale->date}}</td>
+                                <td>{{$sale->purchaseDate}}</td>
                                 <td>{{$sale->comments}}</td>
                             </tr>
                         @endforeach
