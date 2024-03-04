@@ -188,7 +188,7 @@
                                 <div class="d-flex justify-content-between">
                                     <div>
                                         <i class="far fa-user fa-lg me-2 text-info"></i>
-                                        <span class="text-secondary">farmerName:</span> <strong class="text-dark">{{$eggsCount->farmerPhone}}</strong>
+                                        <span class="text-secondary">farmerName:</span> <strong class="text-dark">{{$eggsCount->farmerName}}</strong>
                                     </div>
                                     <div>
                                         <i class="fas fa-phone fa-lg me-2 text-success"></i>

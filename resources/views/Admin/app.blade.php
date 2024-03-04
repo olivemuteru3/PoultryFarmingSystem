@@ -10,7 +10,7 @@
 
 
     <!-- Add your favicon link below -->
-    <link rel="icon" href="icon.png" type="image/x-icon">
+    <link rel="icon" href="{{asset('Admin/icon.png'}}" type="image/x-icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
